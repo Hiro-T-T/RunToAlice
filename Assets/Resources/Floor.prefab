@@ -56,7 +56,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: d4aa88a12c10b4d41a49a1348aa33996, type: 2}
+  - {fileID: 2100000, guid: ed173325697fd014fbd93ff6f9e15883, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -102,3 +102,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64d01f18f286a464885189c6a6f1bc6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scrollSpeed: 1
