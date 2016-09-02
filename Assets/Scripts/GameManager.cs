@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
@@ -12,4 +13,9 @@ public class GameManager : MonoBehaviour {
 	void Update () {
 	
 	}
+
+    void GameOver()
+    {
+        SceneManager.LoadScene("result");
+    }
 }

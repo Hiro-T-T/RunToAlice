@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.SceneManagement;
 
-public class CharacterMove : MonoBehaviour {
+public class CharacterController : MonoBehaviour {
 
     public float moveSpeed = 0.1f;
     public float loadTime = 2.0f;
