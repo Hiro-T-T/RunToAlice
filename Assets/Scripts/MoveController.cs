@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEngine.SceneManagement;
 
-public class CharacterMove : MonoBehaviour {
+public class MoveController : MonoBehaviour
+{
 
     public float moveSpeed = 0.1f;
     public float loadTime = 2.0f;
@@ -23,7 +23,7 @@ public class CharacterMove : MonoBehaviour {
         mousePointInWorld.z = this.transform.position.z;
         this.transform.position = mousePointInWorld;
     }
-    
+
     void OnCollisionEnter(Collision col)
     {
         if (col.gameObject.CompareTag("enemy"))
