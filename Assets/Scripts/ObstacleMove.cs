@@ -1,27 +1,27 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ObstacleMove : MonoBehaviour {
+public class ObstacleMove : MonoBehaviour
+{
 
     //public float moveSpeed = 0.1f;
     private Rigidbody rb;
-    public GameObject gm;
-    GameManager gamemanager;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
         rb = GetComponent<Rigidbody>();
-        gamemanager = gm.GetComponent<GameManager>();
-	}
-	
+    }
+
     void FixedUpdate()
     {
         //rb.AddForce(transform.forward * -moveSpeed);
     }
 
-	// Update is called once per frame
-	void Update () {
-        this.transform.position += new Vector3(0,0,-gamemanager.ballSpeed);
+    // Update is called once per frame
+    void Update()
+    {
+        this.transform.position += new Vector3(0, 0, -GameManager.GetInstance().ballSpeed);
     }
 
     void OnCollisionEnter(Collision col)

@@ -6,7 +6,6 @@ public class CharacterController : MonoBehaviour {
 
     public float moveSpeed = 0.1f;
     public float loadTime = 2.0f;
-    public GameManager gamemanager;
 
     void OnMouseDrag()
     {
@@ -28,7 +27,7 @@ public class CharacterController : MonoBehaviour {
     {
         if (col.gameObject.CompareTag("enemy"))
         {
-            gamemanager.Invoke("GameOver", loadTime);
+            GameManager.GetInstance().Invoke("GameOver", loadTime);
             Destroy(this.gameObject);
         }
     }

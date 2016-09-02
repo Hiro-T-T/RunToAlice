@@ -1,25 +1,23 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ObsInstantiate : MonoBehaviour {
+public class ObsInstantiate : MonoBehaviour
+{
+    // Use this for initialization
+    void Start()
+    {
 
-    public GameManager gm;
+    }
 
-	// Use this for initialization
-	void Start () {
-        gm = GetComponent<GameManager>();
-	}
-	
-	// Update is called once per frame
+    // Update is called once per frame
     void Update()
     {
-        gm.timeLeft -= Time.deltaTime;
-        if (gm.timeLeft <= 0.0)
+        GameManager.GetInstance().timeLeft -= Time.deltaTime;
+        if (GameManager.GetInstance().timeLeft <= 0.0)
         {
-            gm.timeLeft = 3.0f;
-            gm.Create(gm);
+            GameManager.GetInstance().timeLeft = 3.0f;
             //ここに処理
-            //GameObject obs = Instantiate(obstacle, new Vector3(Random.Range(minPos, maxPos), 0, 42), Quaternion.identity) as GameObject;
+            Instantiate(Resources.LoadAll<GameObject>("Obstacle")[0], new Vector3(Random.Range(GameManager.GetInstance().minPos, GameManager.GetInstance().maxPos), 0, 42), Quaternion.identity);
         }
     }
 }

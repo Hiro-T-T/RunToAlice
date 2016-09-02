@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour {
     public float maxPos = 4.0f;
     public float timeLeft = 3.0f;
     public float textureSpeed = 2.0f;
+
+    private static GameManager gm;
      
     // Use this for initialization
     void Start () {
@@ -24,15 +26,21 @@ public class GameManager : MonoBehaviour {
         //    timeLeft = 3.0f;
 
         //    //ここに処理
-        //    GameObject obs = Instantiate(obstacle, new Vector3(Random.Range(minPos, maxPos), 0, 42), Quaternion.identity)as GameObject;
-        //    GameManager gm = obs.GetComponent<GameManager>();
-        //    obs.
+        //    Instantiate(obstacle, new Vector3(Random.Range(minPos, maxPos), 0, 42), Quaternion.identity);
         //}
-	}
+    }
 
-    public void Create(GameManager gamemanager)
+    public static GameManager GetInstance()
     {
-        Instantiate(obstacle, new Vector3(Random.Range(minPos, maxPos), 0, 42), Quaternion.identity);
+        return gm = gm ?? CreateInstance();
+    }
+
+    static GameManager CreateInstance()
+    {
+        var prefab = Resources.LoadAll<GameManager>("")[0];
+        var instance = GameObject.Instantiate<GameManager>(prefab);
+        GameObject.DontDestroyOnLoad(instance);
+        return instance;
     }
 
     void GameOver()
