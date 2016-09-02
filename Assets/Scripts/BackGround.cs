@@ -4,7 +4,7 @@ using System.Collections;
 public class BackGround : MonoBehaviour
 {
     
-    private float scrollSpeed = 0.5f;
+    public float scrollSpeed = 1f;
 
     void Start()
     {
@@ -18,9 +18,9 @@ public class BackGround : MonoBehaviour
 
     void ScrollTexture()
     {
-        var y = Mathf.Repeat(Time.time * scrollSpeed, 1);
+        var y = Mathf.Repeat(Time.time * scrollSpeed, 100);
 
-        var offset = new Vector2(0, y);
+        var offset = new Vector2(0, -y);
 
         GetComponent<Renderer>().sharedMaterial.SetTextureOffset("_MainTex", offset);
     }
