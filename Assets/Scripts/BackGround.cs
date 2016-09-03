@@ -17,7 +17,7 @@ public class BackGround : MonoBehaviour
 
     void ScrollTexture()
     {
-        var y = Mathf.Repeat(Time.time * GameManager.GetInstance().textureSpeed, 100);
+        var y = Mathf.Repeat(Time.time * GameManager.textureSpeed, 100);
 
         var offset = new Vector2(0, -y);
 
