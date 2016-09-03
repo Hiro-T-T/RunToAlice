@@ -25,4 +25,5 @@ public class Obstacle
         Y = y;
         Z = z;
     }
+
 }

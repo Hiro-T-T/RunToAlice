@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour {
     public static float textureSpeed = 2.0f;
     public float minRange = -4.0f;
     public float maxRange = 4.0f;
+    public static int killCount;
 
     //private static GameManager gm;
      
