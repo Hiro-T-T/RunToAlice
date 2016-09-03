@@ -22,14 +22,14 @@ public class CharacterController : MonoBehaviour {
         mousePointInWorld.y = this.transform.position.y;
         mousePointInWorld.z = this.transform.position.z;
         this.transform.position = mousePointInWorld;
-        if (transform.position.x >= gm.maxPos)
-        {
-            transform.position = new Vector3(gm.maxPos, transform.position.y, transform.position.z);
-        }
-        if (transform.position.x <= gm.minPos)
-        {
-            transform.position = new Vector3(gm.minPos, transform.position.y, transform.position.z);
-        }
+        //if (transform.position.x >= gm.maxPos)
+        //{
+        //    transform.position = new Vector3(gm.maxPos, transform.position.y, transform.position.z);
+        //}
+        //if (transform.position.x <= gm.minPos)
+        //{
+        //    transform.position = new Vector3(gm.minPos, transform.position.y, transform.position.z);
+        //}
     }
     
     void OnCollisionEnter(Collision col)
