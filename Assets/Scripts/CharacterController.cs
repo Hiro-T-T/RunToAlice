@@ -11,7 +11,7 @@ public class CharacterController : MonoBehaviour {
 
     void OnMouseDown()
     {
-        Instantiate(bullet, this.transform.position, new Quaternion(1.0f, 0, 0, 1.0f));
+        Instantiate(bullet, new Vector3(this.transform.position.x, 0.5f,1f), new Quaternion(1.0f, 0, 0, 1.0f));
     }
 
     void OnMouseDrag()
