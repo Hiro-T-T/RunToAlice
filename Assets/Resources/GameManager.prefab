@@ -63,8 +63,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1b4f6ca2033b3e4291e865150409031, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ballSpeed: 0.3
+  ballSpeed: 0.6
   minPos: -4
   maxPos: 4
   timeLeft: 3
-  textureSpeed: 2
+  textureSpeed: 3
