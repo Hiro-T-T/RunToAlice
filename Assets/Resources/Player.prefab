@@ -118,6 +118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93a71c78baef1ee43968cfa8d3b0a5fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0.1
+  moveSpeed: 0.6
   loadTime: 2
-  gamemanager: {fileID: 0}
+  gamemanager: {fileID: 114000013542314898, guid: c09ac4803a2c08e4b9a9397f18e7754c,
+    type: 2}

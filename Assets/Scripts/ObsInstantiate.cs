@@ -3,6 +3,7 @@ using System.Collections;
 
 public class ObsInstantiate : MonoBehaviour
 {
+    public GameManager gm;
     // Use this for initialization
     void Start()
     {
@@ -12,12 +13,12 @@ public class ObsInstantiate : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GameManager.GetInstance().timeLeft -= Time.deltaTime;
-        if (GameManager.GetInstance().timeLeft <= 0.0)
+        gm.timeLeft -= Time.deltaTime;
+        if (gm.timeLeft <= 0.0)
         {
-            GameManager.GetInstance().timeLeft = 3.0f;
+            gm.timeLeft = 3.0f;
             //ここに処理
-            Instantiate(Resources.LoadAll<GameObject>("Obstacle")[0], new Vector3(Random.Range(GameManager.GetInstance().minPos, GameManager.GetInstance().maxPos), 0, 42), Quaternion.identity);
+            Instantiate(Resources.Load<GameObject>("Obstacle"), new Vector3(Random.Range(gm.minPos, gm.maxPos), 0, 42), Quaternion.identity);
         }
     }
 }

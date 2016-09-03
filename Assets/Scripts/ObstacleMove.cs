@@ -4,7 +4,7 @@ using System.Collections;
 public class ObstacleMove : MonoBehaviour
 {
 
-    //public float moveSpeed = 0.1f;
+    public float moveSpeed = 0.1f;
     private Rigidbody rb;
 
     // Use this for initialization
@@ -21,7 +21,7 @@ public class ObstacleMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        this.transform.position += new Vector3(0, 0, -GameManager.GetInstance().ballSpeed);
+        this.transform.position += new Vector3(0, 0, -moveSpeed);
     }
 
     void OnCollisionEnter(Collision col)
