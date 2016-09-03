@@ -28,15 +28,30 @@ public class Client : MonoBehaviour
 
     }
 
-    private IEnumerator Start()
+    public void Start()
+    {
+
+    }
+
+    public bool ConnectionStart()
+    {
+        int count = 0;
+        while (count < 5)
+        {
+            count++;
+            stream = GetNetworkStream();
+            if (stream != null) return true;  
+        }
+        return false;
+    }
+
+    public IEnumerator StartReading()
     {
         Debug.Log("START START");
         readbuf = new byte[1024];
-
         while (true)
         {
-            stream = GetNetworkStream();
-            if (stream == null) yield return new WaitForSeconds(0.5f);
+            if(stream == null) yield return new WaitForSeconds(0.5f);
             if (!isStopReading) { StartCoroutine(ReadMessage()); }
             yield return null;
         }
@@ -82,7 +97,6 @@ public class Client : MonoBehaviour
     //        count++;
     //        if (count > 100) break;
     //    }
-
     //}
 
     private IEnumerator SendMessage(string message)
