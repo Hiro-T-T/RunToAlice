@@ -19,7 +19,9 @@ public class GameManager : MonoBehaviour {
     // Use this for initialization
     void Start () {
         obstacle = (GameObject)Resources.Load("Obstacle");
-	}
+ 
+        obstacle.GetComponent<ObstacleMove>().isBreakable = true;
+    }
 	
 	// Update is called once per frame
 	void Update () {

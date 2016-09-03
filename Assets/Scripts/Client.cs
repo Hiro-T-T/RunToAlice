@@ -20,6 +20,9 @@ public class Client : MonoBehaviour
     byte[] readbuf;
 
 
+    private ManualResetEvent _connect = new ManualResetEvent(false);
+    TcpClient tcp;
+
     public Client()
     {
 
@@ -32,6 +35,8 @@ public class Client : MonoBehaviour
 
         while (true)
         {
+            stream = GetNetworkStream();
+            if (stream == null) break;
             if (!isStopReading) { StartCoroutine(ReadMessage()); }
             yield return null;
         }
@@ -110,7 +115,6 @@ public class Client : MonoBehaviour
     public void ReadCallback(IAsyncResult ar)
     {
         Encoding enc = Encoding.UTF8;
-        stream = GetNetworkStream();
         if (stream == null) return;
         int bytes = stream.EndRead(ar);
         string message = enc.GetString(readbuf, 0, bytes);
@@ -135,6 +139,19 @@ public class Client : MonoBehaviour
         {
             //TcpClientを作成し、サーバーと接続する
             TcpClient tcp = new TcpClient(ipOrHost, port);
+
+
+            _connect.Reset();
+
+            tcp = new TcpClient();
+            tcp.BeginConnect(ipOrHost, port, new AsyncCallback(ConnectCallback), tcp);
+
+            if (!_connect.WaitOne(1000))
+            {
+                tcp.Close();
+                throw new SocketException();
+            }
+
             Debug.Log("success conn server ; " + tcp.Connected);
 
             //NetworkStreamを取得する
@@ -145,6 +162,11 @@ public class Client : MonoBehaviour
             return null;
         }
 
+    }
+
+    private void ConnectCallback(IAsyncResult result)
+    {
+        _connect.Set();
     }
 
     //private Socket GetSocket()

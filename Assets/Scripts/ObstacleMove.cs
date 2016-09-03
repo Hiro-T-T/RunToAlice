@@ -4,6 +4,9 @@ using System.Collections;
 public class ObstacleMove : MonoBehaviour
 {
 
+    // 消せるかどうか　とりあえずGameManagerでtrueに変更してる
+    public bool isBreakable = false;
+
     public float moveSpeed = 0.1f;
     private Rigidbody rb;
 
@@ -27,6 +30,10 @@ public class ObstacleMove : MonoBehaviour
     void OnCollisionEnter(Collision col)
     {
         if (col.gameObject.CompareTag("end"))
+        {
+            Destroy(this.gameObject);
+        }
+        if (col.gameObject.CompareTag("Bullet") && isBreakable)
         {
             Destroy(this.gameObject);
         }
