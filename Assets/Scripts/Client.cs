@@ -124,7 +124,7 @@ public class Client : MonoBehaviour
             return stream;
         }
 
-        string ipOrHost = "127.0.0.1";
+        string ipOrHost = "10.22.81.216";
         int port = 10021;
 
         //TcpClientを作成し、サーバーと接続する
