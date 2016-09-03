@@ -100,6 +100,7 @@ public class Client : MonoBehaviour
     private IEnumerator ReadMessage()
     {
         stream = GetNetworkStream();
+        Debug.Log("gotStream");
         // 非同期で待ち受けする
         stream.BeginRead(readbuf, 0, readbuf.Length, new AsyncCallback(ReadCallback), null);
         isStopReading = true;
@@ -125,7 +126,11 @@ public class Client : MonoBehaviour
             return stream;
         }
 
+<<<<<<< HEAD
+        string ipOrHost = "172.20.10.5";
+=======
         string ipOrHost = "172.20.10.5"; 
+>>>>>>> 774645fbd4b86af1ce6b7902c8a0c402c315fc6d
         int port = 5022;
 
         try
