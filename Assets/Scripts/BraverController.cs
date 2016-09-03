@@ -3,15 +3,32 @@ using System.Collections;
 
 public class BraverController : MonoBehaviour {
     ObsType obs;
+    public GameObject braveBullet;
+    public int bulletCount = 7;
+    public float timeLeft = 3.0f;
+
 	// Use this for initialization
 	void Start () {
         obs = ObsType.Braver;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	    
-	}
+
+    // Update is called once per frame
+    void Update()
+    {
+        timeLeft -= Time.deltaTime;
+        if (timeLeft <= 0.0)
+        {
+            timeLeft = 3.0f;
+            //ここに処理
+            Instantiate(Resources.Load("shine"));
+            bulletCount--;
+            if(bulletCount <= 0)
+            {
+                Destroy(gameObject);
+            }
+        }
+
+    }
 
     void OnCollisionEnter(Collision col)
     {
