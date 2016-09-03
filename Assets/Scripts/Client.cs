@@ -111,6 +111,7 @@ public class Client : MonoBehaviour
     {
         Encoding enc = Encoding.UTF8;
         stream = GetNetworkStream();
+        if (stream == null) return;
         int bytes = stream.EndRead(ar);
         string message = enc.GetString(readbuf, 0, bytes);
         message = message.Replace("\r", "").Replace("\n", "");
@@ -125,15 +126,27 @@ public class Client : MonoBehaviour
             return stream;
         }
 
+<<<<<<< HEAD
         string ipOrHost = "172.20.10.5";
+=======
+        string ipOrHost = "172.20.10.5"; 
+>>>>>>> 774645fbd4b86af1ce6b7902c8a0c402c315fc6d
         int port = 5022;
 
-        //TcpClientを作成し、サーバーと接続する
-        TcpClient tcp = new TcpClient(ipOrHost, port);
-        Debug.Log("success conn server");
+        try
+        {
+            //TcpClientを作成し、サーバーと接続する
+            TcpClient tcp = new TcpClient(ipOrHost, port);
+            Debug.Log("success conn server ; " + tcp.Connected);
 
-        //NetworkStreamを取得する
-        return tcp.GetStream();
+            //NetworkStreamを取得する
+            return tcp.GetStream();
+        }
+        catch
+        {
+            return null;
+        }
+
     }
 
     //private Socket GetSocket()
