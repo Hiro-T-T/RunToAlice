@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
@@ -13,6 +14,8 @@ public class GameManager : MonoBehaviour {
     public float minRange = -4.0f;
     public float maxRange = 4.0f;
     public static int killCount;
+    public float countTime = 30;
+    public GameObject tex;
 
     //private static GameManager gm;
      
@@ -21,6 +24,8 @@ public class GameManager : MonoBehaviour {
         obstacle = (GameObject)Resources.Load("Obstacle");
  
         obstacle.GetComponent<ObstacleMove>().isBreakable = true;
+
+        tex.GetComponent<Text>().text = ((int)countTime).ToString();
     }
 	
 	// Update is called once per frame
@@ -33,6 +38,14 @@ public class GameManager : MonoBehaviour {
             //ここに処理
             Instantiate(obstacle, new Vector3(Random.Range(minPos, maxPos), 0, 42), Quaternion.identity);
         }
+
+        countTime -= Time.deltaTime;
+        if (countTime < 0)
+        {
+            countTime = 0;
+            Invoke("GameOver", 2.0f);
+        }
+        tex.GetComponent<Text>().text = "残り時間" + ((int)countTime).ToString();
     }
 
     //public static GameManager GetInstance()

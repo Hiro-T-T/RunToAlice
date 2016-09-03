@@ -1,13 +1,45 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class CharacterController : MonoBehaviour {
 
     public float moveSpeed = 0.1f;
     public float loadTime = 2.0f;
+    public static int hp;
+    public int damageMin = 1;
+    public int damageMax = 10;
     public GameManager gamemanager;
     public GameObject bullet;
+    public GameObject tex;
+
+    void Start()
+    {
+        if(ModeManager.gameMode == 1)
+        {
+            hp = 0;
+        }
+
+        if(ModeManager.gameMode == 2)
+        {
+            hp = 30;
+        }
+        
+    }
+
+    void Update()
+    {
+        if (ModeManager.gameMode == 1)
+        {
+            tex.GetComponent<Text>().text = "Point:" + ((int)hp).ToString();
+        }
+
+        if (ModeManager.gameMode == 2)
+        {
+            tex.GetComponent<Text>().text = "HP:" + ((int)hp).ToString();
+        }
+    }
 
     void OnMouseDown()
     {
@@ -35,8 +67,24 @@ public class CharacterController : MonoBehaviour {
     {
         if (col.gameObject.CompareTag("enemy"))
         {
-            gamemanager.Invoke("GameOver", loadTime);
-            Destroy(this.gameObject);
+            if (ModeManager.gameMode == 1)
+            {
+                hp += Random.Range(damageMin, damageMax);
+                if(hp == 21)
+                {
+                    gamemanager.Invoke("GameOver", loadTime);
+                }
+            }
+
+            if (ModeManager.gameMode == 2)
+            {
+                hp -= Random.Range(damageMin, damageMax);
+                if (hp <= 0)
+                {
+                    gamemanager.Invoke("GameOver", loadTime);
+                    //Destroy(this.gameObject);
+                }
+            }
         }
     }
 }

@@ -6,7 +6,7 @@ public class TitleScript : MonoBehaviour {
     
     public void OnClick()
     {
-        SceneManager.LoadScene("game1");
+        SceneManager.LoadScene("mode");
     }
 	
 }
