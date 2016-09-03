@@ -36,7 +36,7 @@ public class Client : MonoBehaviour
         while (true)
         {
             stream = GetNetworkStream();
-            if (stream == null) break;
+            if (stream == null) yield return new WaitForSeconds(0.5f);
             if (!isStopReading) { StartCoroutine(ReadMessage()); }
             yield return null;
         }
@@ -104,11 +104,14 @@ public class Client : MonoBehaviour
 
     private IEnumerator ReadMessage()
     {
-        stream = GetNetworkStream();
-        Debug.Log("gotStream");
-        // 非同期で待ち受けする
-        stream.BeginRead(readbuf, 0, readbuf.Length, new AsyncCallback(ReadCallback), null);
-        isStopReading = true;
+        if (stream != null)
+        {
+            //stream = GetNetworkStream();
+            Debug.Log("gotStream");
+            // 非同期で待ち受けする
+            stream.BeginRead(readbuf, 0, readbuf.Length, new AsyncCallback(ReadCallback), null);
+            isStopReading = true;
+        }
         yield return null;
     }
 
@@ -138,7 +141,7 @@ public class Client : MonoBehaviour
         try
         {
             //TcpClientを作成し、サーバーと接続する
-            TcpClient tcp = new TcpClient(ipOrHost, port);
+           //TcpClient tcp = new TcpClient(ipOrHost, port);
 
 
             _connect.Reset();
