@@ -27,6 +27,7 @@ public class CharacterController : MonoBehaviour {
         Vector3 mousePointInWorld = Camera.main.ScreenToWorldPoint(mousePointInScreen);
         mousePointInWorld.y = this.transform.position.y;
         mousePointInWorld.z = this.transform.position.z;
+        mousePointInWorld.x = Mathf.Clamp(mousePointInWorld.x, -3, 3);
         this.transform.position = mousePointInWorld;
     }
     

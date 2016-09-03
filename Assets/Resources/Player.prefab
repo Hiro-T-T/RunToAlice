@@ -93,7 +93,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 120
   m_CollisionDetection: 0
 --- !u!65 &65000011337906284
 BoxCollider:
@@ -115,10 +115,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000010066041936}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93a71c78baef1ee43968cfa8d3b0a5fa, type: 3}
+  m_Script: {fileID: 11500000, guid: 437eccd59dccc9048b7bbd944ab839b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0.6
+  moveSpeed: 0.1
   loadTime: 2
   gamemanager: {fileID: 114000013542314898, guid: c09ac4803a2c08e4b9a9397f18e7754c,
     type: 2}
+  bullet: {fileID: 1000010855551184, guid: 8312afddc6f5eb04b8fbda8fc4f3d4d9, type: 2}

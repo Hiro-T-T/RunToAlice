@@ -18,7 +18,7 @@ public class ObsInstantiate : MonoBehaviour
         {
             gm.timeLeft = 3.0f;
             //ここに処理
-            Instantiate(Resources.Load<GameObject>("Obstacle"), new Vector3(Random.Range(gm.minPos, gm.maxPos), 0, 42), Quaternion.identity);
+            Instantiate(Resources.Load<GameObject>("Obstacle"), new Vector3(Random.Range(gm.minPos, gm.maxPos), 0.5f, 42), Quaternion.identity);
         }
     }
 }
