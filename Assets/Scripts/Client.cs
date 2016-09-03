@@ -100,6 +100,7 @@ public class Client : MonoBehaviour
     private IEnumerator ReadMessage()
     {
         stream = GetNetworkStream();
+        Debug.Log("gotStream");
         // 非同期で待ち受けする
         stream.BeginRead(readbuf, 0, readbuf.Length, new AsyncCallback(ReadCallback), null);
         isStopReading = true;
@@ -124,8 +125,8 @@ public class Client : MonoBehaviour
             return stream;
         }
 
-        string ipOrHost = "10.22.81.216";
-        int port = 10021;
+        string ipOrHost = "172.20.10.5";
+        int port = 5022;
 
         //TcpClientを作成し、サーバーと接続する
         TcpClient tcp = new TcpClient(ipOrHost, port);

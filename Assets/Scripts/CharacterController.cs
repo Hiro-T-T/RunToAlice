@@ -2,11 +2,17 @@
 using System.Collections;
 using UnityEngine.SceneManagement;
 
-public class CharacterMove : MonoBehaviour {
+public class CharacterController : MonoBehaviour {
 
     public float moveSpeed = 0.1f;
     public float loadTime = 2.0f;
     public GameManager gamemanager;
+    public GameObject bullet;
+
+    void OnMouseDown()
+    {
+        Instantiate(bullet, this.transform.position, new Quaternion(1.0f, 0, 0, 1.0f));
+    }
 
     void OnMouseDrag()
     {
