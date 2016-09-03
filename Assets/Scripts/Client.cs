@@ -22,7 +22,7 @@ public class Client : MonoBehaviour
 
     private ManualResetEvent _connect = new ManualResetEvent(false);
     TcpClient tcp;
-    
+
     public Client()
     {
 
@@ -40,7 +40,7 @@ public class Client : MonoBehaviour
         {
             count++;
             stream = GetNetworkStream();
-            if (stream != null) return true;  
+            if (stream != null) return true;
         }
         return false;
     }
@@ -51,7 +51,7 @@ public class Client : MonoBehaviour
         readbuf = new byte[1024];
         while (true)
         {
-            if(stream == null) yield return new WaitForSeconds(0.5f);
+            if (stream == null) yield return new WaitForSeconds(0.5f);
             if (!isStopReading) { StartCoroutine(ReadMessage()); }
             yield return null;
         }
@@ -99,7 +99,12 @@ public class Client : MonoBehaviour
     //    }
     //}
 
-        //public void SendPlayerInfo(PlayerInfo)
+    public void SendPlayerInfo(PlayerInfo pi)
+    {
+        currentMessage = JsonUtility.ToJson(pi);
+
+        StartCoroutine(SendMessage(currentMessage));
+    }
 
     public IEnumerator SendMessage(string message)
     {
@@ -151,7 +156,7 @@ public class Client : MonoBehaviour
             return stream;
         }
 
-
+        //string ipOrHost = "localhost";
         string ipOrHost = "172.20.10.5";
 
         int port = 5022;
@@ -159,7 +164,7 @@ public class Client : MonoBehaviour
         try
         {
             //TcpClientを作成し、サーバーと接続する
-           //TcpClient tcp = new TcpClient(ipOrHost, port);
+            //TcpClient tcp = new TcpClient(ipOrHost, port);
 
 
             _connect.Reset();
@@ -193,7 +198,7 @@ public class Client : MonoBehaviour
     private void OnMessageReceived(List<string> message)
     {
         Action<List<string>> tmp = MessageReceived;
-        if(tmp != null)
+        if (tmp != null)
         {
             tmp(message);
         }

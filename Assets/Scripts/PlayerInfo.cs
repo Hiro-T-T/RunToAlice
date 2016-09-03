@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerInfo {
+public class PlayerInfo : MonoBehaviour {
 
     public int HP;
     public float X;
@@ -22,5 +22,4 @@ public class PlayerInfo {
     {
         return string.Format("HP : {0}, X : {1}, Y : {2}", HP, X, Y);
     }
-
 }
