@@ -18,11 +18,11 @@ public class Client : MonoBehaviour
     NetworkStream stream = null;
     bool isStopReading = false;
     byte[] readbuf;
-
+    public Action<List<string>> MessageReceived = null;
 
     private ManualResetEvent _connect = new ManualResetEvent(false);
     TcpClient tcp;
-
+    
     public Client()
     {
 
@@ -99,7 +99,9 @@ public class Client : MonoBehaviour
     //    }
     //}
 
-    private IEnumerator SendMessage(string message)
+        //public void SendPlayerInfo(PlayerInfo)
+
+    public IEnumerator SendMessage(string message)
     {
         Debug.Log("START SendMessage:" + message);
 
@@ -138,6 +140,8 @@ public class Client : MonoBehaviour
         message = message.Replace("\r", "").Replace("\n", "");
         isStopReading = false;
         messages.Add(message);
+
+        OnMessageReceived(messages);
     }
 
     private NetworkStream GetNetworkStream()
@@ -184,6 +188,15 @@ public class Client : MonoBehaviour
     private void ConnectCallback(IAsyncResult result)
     {
         _connect.Set();
+    }
+
+    private void OnMessageReceived(List<string> message)
+    {
+        Action<List<string>> tmp = MessageReceived;
+        if(tmp != null)
+        {
+            tmp(message);
+        }
     }
 
     //private Socket GetSocket()
