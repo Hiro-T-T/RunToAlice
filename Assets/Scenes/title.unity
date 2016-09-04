@@ -402,7 +402,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 337162112}
   - 114: {fileID: 337162111}
-  - 114: {fileID: 337162113}
   m_Layer: 0
   m_Name: TitleManager
   m_TagString: Untagged
@@ -428,9 +427,11 @@ MonoBehaviour:
   DeltaTime_speed: 0.333
   moveSceneSec: 2
   named: 0
-  namemam: {fileID: 337162113}
+  namemam: {fileID: 0}
   image_s: {fileID: 1875928766}
   texF: {fileID: 1417911236}
+  inputField: {fileID: 1738113269}
+  isEntry: 0
 --- !u!4 &337162112
 Transform:
   m_ObjectHideFlags: 0
@@ -444,21 +445,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
---- !u!114 &337162113
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 337162110}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5cbf5b5d24435f947b210f0389ff05ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  titleS: {fileID: 337162111}
-  name_move: 0
-  inputField: {fileID: 1738113269}
-  text: {fileID: 710424880}
 --- !u!1 &557811618
 GameObject:
   m_ObjectHideFlags: 0
@@ -971,6 +957,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
+--- !u!1 &1277685472
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1277685473}
+  - 114: {fileID: 1277685474}
+  m_Layer: 0
+  m_Name: NameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1277685473
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1277685472}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 409, y: 640, z: 0.05}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+--- !u!114 &1277685474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1277685472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cbf5b5d24435f947b210f0389ff05ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  titleS: {fileID: 337162111}
+  name_move: 0
+  inputField: {fileID: 1738113269}
+  text: {fileID: 710424880}
 --- !u!1 &1306560767
 GameObject:
   m_ObjectHideFlags: 0
@@ -1046,7 +1076,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1306560770}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 337162111}
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1306560770

@@ -45,7 +45,7 @@ public class NetworkManager : MonoBehaviour
         {
             if (ts == null) break;
 
-            PlayerInfo pi = new PlayerInfo(CharacterController.hp, ar.transform.position.x, ar.transform.position.y);
+            PlayerInfo pi = new PlayerInfo(CharacterController.hp, ar.transform.position.x, ar.transform.position.y, TitleScript.PlayerName);
             ts.SendPlayerInfo(pi);
             yield return new WaitForSeconds(0.1f);
         }

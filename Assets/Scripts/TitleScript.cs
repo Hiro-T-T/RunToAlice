@@ -9,7 +9,6 @@ public class TitleScript : Client
     public Toggle toggle;
     public int ClientNum = 0;
     private bool isFirstCall = true;
-<<<<<<< HEAD
     [SerializeField]
     Graphic m_Graphics;
     [SerializeField]
@@ -23,10 +22,10 @@ public class TitleScript : Client
     public GameObject image_s;
     public GameObject texF;
 
+    public InputField inputField;
+    public bool isEntry = false;
+    public static string PlayerName;
 
-=======
-    
->>>>>>> 36d4dc1baa13f5d5ba9fc80bad3b89863d37a165
     public static TitleScript Instance
     {
         get; private set;
@@ -51,12 +50,7 @@ public class TitleScript : Client
 
     public void OnClick()
     {
-        if (connectserver == false)
-        {
-            MessageReceived -= ClientNumReceived;
-            SceneManager.LoadScene("mode");
-        }
-        else
+        if (inputField.text != null && inputField.text.Length >= 1)
         {
             if (ConnectionStart())
             {
@@ -66,6 +60,7 @@ public class TitleScript : Client
                     isFirstCall = false;
                 }
 
+                PlayerName = inputField.text;
                 StartCoroutine(WaitForConnecting());
             }
             else
@@ -73,6 +68,7 @@ public class TitleScript : Client
                 Debug.Log("サーバに接続できませんでした");
             }
         }
+
     }
 
     private IEnumerator WaitForConnecting()
@@ -86,7 +82,8 @@ public class TitleScript : Client
             if (ClientNum >= 1)
             {
                 MessageReceived -= ClientNumReceived;
-                SceneManager.LoadScene("mode");
+                isEntry = true;
+                SceneManager.LoadScene("loading");
                 break;
             }
             else
@@ -121,6 +118,7 @@ public class TitleScript : Client
         float m_Time = 0.0f;
         while (true)
         {
+            if (isEntry) break;
             m_Time += Angular * DeltaTime_speed;
             var color = m_Graphics.color;
             color.a = Mathf.Abs(Mathf.Sin(m_Time));
@@ -157,24 +155,27 @@ public class TitleScript : Client
     }
     void Update()
     {
-        if (Input.GetKey(KeyCode.Escape))
+        if (isEntry == false)
         {
-            Application.Quit();
-        }
-        if (named == false && namemam.name_move == true)
-        {
+            if (Input.GetKey(KeyCode.Escape))
+            {
+                Application.Quit();
+            }
+            //if (named == false && namemam.name_move == true)
+            //{
 
 
-        }
-        if (named)
-        {
-            image_s.gameObject.GetComponent<Image>().enabled = false;
-            texF.SetActive(true);
-        }
-        else
-        {
-            image_s.gameObject.GetComponent<Image>().enabled = true;
-            texF.SetActive(false);
+            //}
+            if (named)
+            {
+                image_s.gameObject.GetComponent<Image>().enabled = false;
+                texF.SetActive(true);
+            }
+            else
+            {
+                image_s.gameObject.GetComponent<Image>().enabled = true;
+                texF.SetActive(false);
+            }
         }
     }
 }
