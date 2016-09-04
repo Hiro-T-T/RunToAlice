@@ -17,6 +17,9 @@ public class GameManager : MonoBehaviour {
     public float countTime = 30;
     public static bool coolTime = false;
     public static float intarval = 5.0f;
+    public int hp_middle = 70;
+    public int hp_low = 30;
+    public int hp_death = 10;
     public GameObject tex;
 
     //private static GameManager gm;
@@ -48,6 +51,20 @@ public class GameManager : MonoBehaviour {
             Invoke("GameOver", 2.0f);
         }
         tex.GetComponent<Text>().text = "残り時間" + ((int)countTime).ToString();
+
+        // countTimeの変動
+        if(CharacterController.hp < hp_middle)
+        {
+            intarval = 4.0f;
+        }
+        if (CharacterController.hp < hp_low)
+        {
+            intarval = 2.7f;
+        }
+        if (CharacterController.hp < hp_death)
+        {
+            intarval = 1.3f;
+        }
     }
 
     //public static GameManager GetInstance()

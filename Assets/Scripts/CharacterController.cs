@@ -23,7 +23,7 @@ public class CharacterController : MonoBehaviour {
 
         if(ModeManager.gameMode == 2)
         {
-            hp = 30;
+            hp = 150;
         }
         
     }
