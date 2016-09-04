@@ -39,7 +39,9 @@ public class LoadingManager : MonoBehaviour
                 ConnectingText.SetActive(false);
                 CompleteText.SetActive(true);
 
-                Invoke("ready", 1.0f);
+                yield return new WaitForSeconds(1f);
+
+                SceneManager.LoadScene("ready");
                 break;
             }
 
