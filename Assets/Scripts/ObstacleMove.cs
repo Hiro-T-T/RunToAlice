@@ -48,7 +48,7 @@ public class ObstacleMove : MonoBehaviour
 
             if (CharacterController.hp <= 0)
             {
-                GameObject.Find("GameManager").GetComponent<GameManager>().Invoke("GameOver", 2.0f);
+                GameObject.Find("GameManager").GetComponent<GameManager>().GameOver();
                 //Destroy(this.gameObject);
             }
 

@@ -6,18 +6,20 @@ using System.Collections.Generic;
 public class NetworkManager : MonoBehaviour
 {
     private TitleScript ts;
-    public GameObject br;
+    public GameObject ar;
     public GameObject instantiateImage;
     public GameManager gm;
     public GameObject obstacle = null;
     public float minPos = -4.0f;
     public float maxPos = 4.0f;
 
+    public static PlayerInfo RivalInfo;
+
     // Use this for initialization
     void Start()
     {
         ts = TitleScript.Instance;
-        br = GameObject.Find("braver");
+        ar = GameObject.Find("alice");
 
         if (ts != null)
         {
@@ -25,7 +27,7 @@ public class NetworkManager : MonoBehaviour
             ts.AtButtonReceived += AtButtonReceived;
             ts.MessageReceived += MessageReceived;
             StartCoroutine(ts.StartReadLoop());
-            // StartSendInfo();
+            StartSendInfo();
             //print("StartSendInfo");
             StartCoroutine(GenerateLoop());
         }
@@ -43,7 +45,7 @@ public class NetworkManager : MonoBehaviour
         {
             if (ts == null) break;
 
-            PlayerInfo pi = new PlayerInfo(CharacterController.hp, br.transform.position.x, br.transform.position.y);
+            PlayerInfo pi = new PlayerInfo(CharacterController.hp, ar.transform.position.x, ar.transform.position.y);
             ts.SendPlayerInfo(pi);
             yield return new WaitForSeconds(0.1f);
         }
@@ -72,6 +74,7 @@ public class NetworkManager : MonoBehaviour
     private void MessageReceived(string message)
     {
         print(message);
+        RivalInfo = JsonUtility.FromJson<PlayerInfo>(message);
     }
 
     private void AtButtonReceived(string str)

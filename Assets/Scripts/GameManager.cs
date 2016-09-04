@@ -23,12 +23,16 @@ public class GameManager : MonoBehaviour {
 	public GameObject tex;
 	public ObstacleState obsState = ObstacleState.Back;
 
+	public GameObject instantiateImage;
+
 	//private static GameManager gm;
-	 
+
 	// Use this for initialization
 	void Start () {
 		obstacle = (GameObject)Resources.Load("Obstacle");
- 
+		instantiateImage = GameObject.Find("GameOver");
+		instantiateImage.SetActive(false);
+
 		//obstacle.GetComponent<ObstacleMove>().isBreakable = true;
 
 		tex.GetComponent<Text>().text = ((int)countTime).ToString();
@@ -50,7 +54,7 @@ public class GameManager : MonoBehaviour {
 		if (countTime < 0)
 		{
 			countTime = 0;
-			Invoke("GameOver", 2.0f);
+			GameOver();
 		}
 		tex.GetComponent<Text>().text = "残り時間" + ((int)countTime).ToString();
 
@@ -87,7 +91,12 @@ public class GameManager : MonoBehaviour {
 	//    return instance;
 	//}
 
-	void GameOver()
+	public void GameOver()
+	{
+		instantiateImage.SetActive(true);
+		Invoke("GotoResult",1.0f);
+	}
+	void GotoResult()
 	{
 		SceneManager.LoadScene("result");
 	}

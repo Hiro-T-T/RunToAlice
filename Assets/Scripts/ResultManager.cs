@@ -15,7 +15,9 @@ public class ResultManager : MonoBehaviour
     void Start()
     {
         MyHp = CharacterController.hp;
-        RivalHp = CharacterController.hp;
+        if (NetworkManager.RivalInfo != null)
+            RivalHp = NetworkManager.RivalInfo.HP;
+        else RivalHp = 100;
     }
 
     // Update is called once per frame
@@ -24,11 +26,11 @@ public class ResultManager : MonoBehaviour
 
         MyHP.GetComponent<Text>().text = "自分のHP：" + MyHp;
         RivalHP.GetComponent<Text>().text = "相手のHP：" + RivalHp;
-        if (MyHp > RivalHp )
+        if ((MyHp < RivalHp && MyHp != 0) || RivalHp == 0)
         {
             WinLose.GetComponent<Text>().text = "You Win";
         }
-        else if (MyHp < RivalHp)
+        else if ((MyHp > RivalHp && RivalHp != 0) || MyHp == 0)
         {
             WinLose.GetComponent<Text>().text = "You Lose";
         }
