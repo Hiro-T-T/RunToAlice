@@ -1,29 +1,55 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public enum ObsType { Stone, Braver, Slime };
+public enum ObstacleState { Front, Back }
 
-public class Obstacle
+public class Obstacle : MonoBehaviour
 {
+    private int _cardnum;
+    public int CardNum
+    {
+        get
+        {
+            return _cardnum;
+        }
+        set
+        {
+            _cardnum = value;
+            if (_state == ObstacleState.Back)
+                GetComponent<Renderer>().material = _material[0];
+            else if (_state == ObstacleState.Front)
+                GetComponent<Renderer>().material = _material[CardNum];
+        }
+    }
+    
+    private ObstacleState _state;
+    public ObstacleState State
+    {
+        get
+        {
+            return _state;
+        }
+        set
+        {
+            _state = value;
+            if (_state == ObstacleState.Back)
+                GetComponent<Renderer>().material = _material[0];
+            else if (_state == ObstacleState.Front)
+                GetComponent<Renderer>().material = _material[CardNum];
 
-    public ObsType Type;
-    public int HP;
-    public bool isBreakable;
-    public float X, Y, Z;
+        }
+    }
+    public Material[] _material;
 
     public Obstacle()
     {
-
+        //GetComponent<Renderer>().material = _material[0];
     }
 
-    public Obstacle(ObsType type, int hp, bool isbreakable, float x, float y, float z)
+    // Use this for initialization
+    void Start()
     {
-        Type = type;
-        HP = hp;
-        isBreakable = isbreakable;
-        X = x;
-        Y = y;
-        Z = z;
+        
     }
 
 }

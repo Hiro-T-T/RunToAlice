@@ -89,7 +89,12 @@ public class NetworkManager : MonoBehaviour
         while (true)
         {
             if (isReceived)
-                Instantiate(obstacle, new Vector3(objectX, 0, 42), Quaternion.identity);
+            {
+                GameObject obs = Resources.Load<GameObject>("Obstacle");
+                obs.GetComponent<Obstacle>().CardNum = Random.Range(1, 14);
+                obs.GetComponent<Obstacle>().State = gm.obsState;
+                Instantiate(obs, new Vector3(objectX, 1.6f, 42), obs.transform.rotation);
+            }
             isReceived = false;
             yield return new WaitForSeconds(0.1f);
         }

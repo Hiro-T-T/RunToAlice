@@ -9,7 +9,7 @@ public class TitleScript : Client
     public Toggle toggle;
     public int ClientNum = 0;
     private bool isFirstCall = true;
-
+    
     public static TitleScript Instance
     {
         get; private set;

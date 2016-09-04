@@ -33,7 +33,7 @@ public class ObstacleMove : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-        if (col.gameObject.CompareTag("Bullet") && isBreakable)
+        if (col.gameObject.CompareTag("Bullet"))
         {
             Destroy(this.gameObject);
         }
