@@ -47,24 +47,21 @@ public class Client : MonoBehaviour
 
     public IEnumerator StartReadLoop()
     {
-        Debug.Log("START START");
+        readbuf = new byte[1024];
 
         while (true)
         {
-            if (stream == null) break;
-            isStopReading = false;
-            StartCoroutine(StartReading());
-            yield return new WaitForSeconds(0.1f);
+            ReadMessage();
+            yield return null;
         }
     }
 
-    public IEnumerator StartReading()
+    public IEnumerator StartReading() 
     {
         readbuf = new byte[1024];
         while (true)
         {
-            if (stream == null) yield return new WaitForSeconds(0.5f);
-            if (!isStopReading) { StartCoroutine(ReadMessage()); }
+            if (!isStopReading) { ReadMessage(); }
             yield return null;
         }
     }
@@ -99,7 +96,7 @@ public class Client : MonoBehaviour
         yield break;
     }
 
-    private IEnumerator ReadMessage()
+    private void ReadMessage()
     {
         
         if (stream != null)
@@ -110,7 +107,6 @@ public class Client : MonoBehaviour
             stream.BeginRead(readbuf, 0, readbuf.Length, new AsyncCallback(ReadCallback), null);
             isStopReading = true;
         }
-        yield return null;
     }
 
     public void ReadCallback(IAsyncResult ar)
@@ -119,7 +115,7 @@ public class Client : MonoBehaviour
         if (stream == null) return;
         int bytes = stream.EndRead(ar);
         string message = enc.GetString(readbuf, 0, bytes);
-        //print("read1 : " + message);
+        print("read1 : " + message);
         message = message.Replace("\r", "").Replace("\n", "");
         isStopReading = false;
 

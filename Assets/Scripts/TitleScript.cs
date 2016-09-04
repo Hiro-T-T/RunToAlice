@@ -65,7 +65,7 @@ public class TitleScript : Client
             yield return new WaitForSeconds(0.1f);
             StartCoroutine(StartReading());
 
-            if (ClientNum == 2)
+            if (ClientNum >= 1)
             {
                 MessageReceived -= ClientNumReceived;
                 SceneManager.LoadScene("mode");
