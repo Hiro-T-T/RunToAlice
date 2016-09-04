@@ -114,7 +114,7 @@ public class Client : MonoBehaviour
         int bytes = stream.EndRead(ar);
         string message = enc.GetString(readbuf, 0, bytes);
         print("read1 : " + message);
-        message = message.Replace("\r", "").Replace("\n", "");
+        //message = message.Replace("\r", "").Replace("\n", "");
         isStopReading = false;
 
         //print("read2 : " + message);

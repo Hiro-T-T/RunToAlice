@@ -20,9 +20,9 @@ public class NetworkManager : MonoBehaviour
         ts = TitleScript.Instance;
         br = GameObject.Find("braver");
 
-        print("StartNetworkManager");
         if (ts != null)
         {
+            print("StartNetworkManager");
             ts.AtButtonReceived += AtButtonReceived;
             ts.MessageReceived += MessageReceived;
             StartCoroutine(ts.StartReadLoop());

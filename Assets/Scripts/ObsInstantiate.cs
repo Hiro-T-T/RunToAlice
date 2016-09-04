@@ -11,14 +11,14 @@ public class ObsInstantiate : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        gm.timeLeft -= Time.deltaTime;
-        if (gm.timeLeft <= 0.0)
-        {
-            gm.timeLeft = 3.0f;
-            //ここに処理
-            Instantiate(Resources.Load<GameObject>("Obstacle"), new Vector3(Random.Range(gm.minPos, gm.maxPos), 0.5f, 42), Quaternion.identity);
-        }
-    }
+    //void Update()
+    //{
+    //    gm.timeLeft -= Time.deltaTime;
+    //    if (gm.timeLeft <= 0.0)
+    //    {
+    //        gm.timeLeft = 3.0f;
+    //        //ここに処理
+    //        Instantiate(Resources.Load<GameObject>("Obstacle"), new Vector3(Random.Range(gm.minPos, gm.maxPos), 0.5f, 42), Quaternion.identity);
+    //    }
+    //}
 }
