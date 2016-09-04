@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44692534, g: 0.49678725, b: 0.5750856, a: 1}
+  m_IndirectSpecularColor: {r: 0.44692504, g: 0.4967869, b: 0.57508504, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -893,6 +893,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 825d835671ccb794e8d1f9156618d44a, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &292296993 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114000012069266594, guid: 825d835671ccb794e8d1f9156618d44a,
+    type: 2}
+  m_PrefabInternal: {fileID: 292296992}
+  m_Script: {fileID: 11500000, guid: c6e4e6a7d3201594a8dbb0370edf6c3c, type: 3}
 --- !u!1 &294814063
 GameObject:
   m_ObjectHideFlags: 0
@@ -3260,7 +3266,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1789887368}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 292296993}
+        m_MethodName: PressAttackButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1789887368
