@@ -8,6 +8,7 @@ public class TitleScript : Client
     private bool connectserver = false;
     public Toggle toggle;
     public int ClientNum = 0;
+    private bool isFirstCall = true;
 
     public static TitleScript Instance
     {
@@ -25,35 +26,55 @@ public class TitleScript : Client
         DontDestroyOnLoad(gameObject);
     }
 
+    void Start()
+    {
+        MessageReceived += ClientNumReceived;
+    }
+
     public void OnClick()
     {
         if (connectserver == false)
         {
+            MessageReceived -= ClientNumReceived;
             SceneManager.LoadScene("mode");
         }
         else
         {
             if (ConnectionStart())
             {
-                StartCoroutine(StartReading());
+                if (isFirstCall)
+                {
+                    //StartCoroutine(StartReadLoop());
+                    isFirstCall = false;
+                }
 
-                MessageReceived = ClientNumReceived;
-                RequestClientNum();
-                
-                if (ClientNum == 2)
-                {
-                    MessageReceived -= ClientNumReceived;
-                    SceneManager.LoadScene("mode");
-                }
-                else
-                {
-                    Debug.Log("サーバに接続できませんでした ClientNum : " + ClientNum);
-                }
+                StartCoroutine(WaitForConnecting());
             }
             else
             {
                 Debug.Log("サーバに接続できませんでした");
             }
+        }
+    }
+
+    private IEnumerator WaitForConnecting()
+    {
+        while (true)
+        {
+            RequestClientNum();
+            yield return new WaitForSeconds(0.1f);
+            StartCoroutine(StartReading());
+
+            if (ClientNum == 2)
+            {
+                MessageReceived -= ClientNumReceived;
+                SceneManager.LoadScene("mode");
+            }
+            else
+            {
+                Debug.Log("サーバに接続できませんでした ClientNum : " + ClientNum);
+            }
+            yield return new WaitForSeconds(0.1f);
         }
     }
 
@@ -68,7 +89,7 @@ public class TitleScript : Client
 
     private void ClientNumReceived(string num)
     {
-
+        print("numreceived" + num);
         ClientNum = int.Parse(num);
     }
 }

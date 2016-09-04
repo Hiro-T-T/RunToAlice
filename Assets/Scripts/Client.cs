@@ -33,11 +33,6 @@ public class Client : MonoBehaviour
     //    Close();
     //}
 
-    public void Start()
-    {
-
-    }
-
     public bool ConnectionStart()
     {
         int count = 0;
@@ -50,9 +45,21 @@ public class Client : MonoBehaviour
         return false;
     }
 
-    public IEnumerator StartReading()
+    public IEnumerator StartReadLoop()
     {
         Debug.Log("START START");
+
+        while (true)
+        {
+            if (stream == null) break;
+            isStopReading = false;
+            StartCoroutine(StartReading());
+            yield return new WaitForSeconds(0.1f);
+        }
+    }
+
+    public IEnumerator StartReading()
+    {
         readbuf = new byte[1024];
         while (true)
         {
@@ -94,10 +101,11 @@ public class Client : MonoBehaviour
 
     private IEnumerator ReadMessage()
     {
+        
         if (stream != null)
         {
             //stream = GetNetworkStream();
-            Debug.Log("gotStream");
+            //Debug.Log("gotStream");
             // 非同期で待ち受けする
             stream.BeginRead(readbuf, 0, readbuf.Length, new AsyncCallback(ReadCallback), null);
             isStopReading = true;
@@ -111,12 +119,15 @@ public class Client : MonoBehaviour
         if (stream == null) return;
         int bytes = stream.EndRead(ar);
         string message = enc.GetString(readbuf, 0, bytes);
+        print("read1 : " + message);
         message = message.Replace("\r", "").Replace("\n", "");
         isStopReading = false;
 
+        print("read2 : " + message);
         if (message == "pressatb")
             OnAtButtonReceived();
-        OnMessageReceived(message);
+        else
+            OnMessageReceived(message);
     }
 
     private NetworkStream GetNetworkStream()
@@ -126,8 +137,8 @@ public class Client : MonoBehaviour
             return stream;
         }
 
-        string ipOrHost = "localhost";
-        //string ipOrHost = "172.20.10.5";
+        //string ipOrHost = "localhost";
+        string ipOrHost = "172.20.10.5";
 
         int port = 5022;
 

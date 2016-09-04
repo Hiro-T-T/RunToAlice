@@ -21,6 +21,7 @@ public class NetworkManager : MonoBehaviour
         {
             ts.AtButtonReceived += AtButtonReceived;
             ts.MessageReceived += MessageReceived;
+            StartCoroutine(ts.StartReadLoop());
             StartSendInfo();
             print("StartSendInfo");
         }
