@@ -9,14 +9,13 @@ public class NetworkManager : MonoBehaviour
     public GameObject br;
     public GameObject instantiateImage;
     public GameManager gm;
-    private GameObject obstacle;
+    public GameObject obstacle = null;
     public float minPos = -4.0f;
     public float maxPos = 4.0f;
 
     // Use this for initialization
     void Start()
     {
-        obstacle = (GameObject)Resources.Load("Obstacle");
         ts = TitleScript.Instance;
         br = GameObject.Find("braver");
 
@@ -28,6 +27,7 @@ public class NetworkManager : MonoBehaviour
             StartCoroutine(ts.StartReadLoop());
             // StartSendInfo();
             //print("StartSendInfo");
+            StartCoroutine(GenerateLoop());
         }
     }
 
@@ -53,13 +53,13 @@ public class NetworkManager : MonoBehaviour
     {
         //if (GameManager.coolTime == false)
         //{
-            if (ts != null)
-            {
-                StartCoroutine(ts.SendMessage("pressatb "+ Random.Range(minPos, maxPos)));
-            }
-            GameManager.coolTime = true;
-            instantiateImage.SetActive(false);
-            Invoke("CoolManage", GameManager.intarval);
+        if (ts != null)
+        {
+            StartCoroutine(ts.SendMessage("pressatb " + Random.Range(minPos, maxPos)));
+        }
+        GameManager.coolTime = true;
+        instantiateImage.SetActive(false);
+        Invoke("CoolManage", GameManager.intarval);
         //}
     }
 
@@ -77,7 +77,22 @@ public class NetworkManager : MonoBehaviour
     private void AtButtonReceived(string str)
     {
         print("Button Pressed : " + float.Parse(str));
-        Instantiate(obstacle, new Vector3(float.Parse(str), 0, 42), Quaternion.identity);
+        //if (obstacle != null)
+        objectX = float.Parse(str);
+        isReceived = true;
+    }
+
+    private float objectX;
+    private bool isReceived = false;
+    private IEnumerator GenerateLoop()
+    {
+        while (true)
+        {
+            if (isReceived)
+                Instantiate(obstacle, new Vector3(objectX, 0, 42), Quaternion.identity);
+            isReceived = false;
+            yield return new WaitForSeconds(0.1f);
+        }
     }
 
 }
