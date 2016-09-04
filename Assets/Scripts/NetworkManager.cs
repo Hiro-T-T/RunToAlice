@@ -9,6 +9,7 @@ public class NetworkManager : MonoBehaviour
     private TitleScript ts;
     public GameObject br;
     public GameObject instantiateImage;
+    public GameManager gm;
 
     // Use this for initialization
     void Start()
@@ -73,5 +74,6 @@ public class NetworkManager : MonoBehaviour
     private void AtButtonReceived()
     {
         print("Button Pressed");
+        gm.Insta();
     }
 }

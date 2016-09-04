@@ -38,10 +38,11 @@ public class GameManager : MonoBehaviour {
         timeLeft -= Time.deltaTime;
         if (timeLeft <= 0.0)
         {
-            timeLeft = 3.0f;
+            timeLeft = 5.0f;
 
             //ここに処理
-            Instantiate(obstacle, new Vector3(Random.Range(minPos, maxPos), 0, 42), Quaternion.identity);
+            Insta();
+
         }
 
         countTime -= Time.deltaTime;
@@ -65,6 +66,11 @@ public class GameManager : MonoBehaviour {
         {
             intarval = 1.3f;
         }
+    }
+
+    public void Insta()
+    {
+        Instantiate(obstacle, new Vector3(Random.Range(minPos, maxPos), 0, 42), Quaternion.identity);
     }
 
     //public static GameManager GetInstance()
