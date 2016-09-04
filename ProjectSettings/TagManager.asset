@@ -4,8 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - end
-  - enemy
+  - End
+  - Enemy
   - GameManager
   - Bullet
   - Trap

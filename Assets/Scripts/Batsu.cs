@@ -38,13 +38,17 @@ public class Batsu : MonoBehaviour
                 Invoke("FinishEffect", effectTime);
             }
         }
-    }
-
-    void OnCollisionEnter(Collision col)
-    {
-        if (col.gameObject.CompareTag("end"))
+        if (col.gameObject.CompareTag("End"))
         {
             Destroy(this.gameObject);
         }
     }
+
+    //void OnCollisionEnter(Collision col)
+    //{
+    //    if (col.gameObject.CompareTag("End"))
+    //    {
+    //        Destroy(this.gameObject);
+    //    }
+    //}
 }

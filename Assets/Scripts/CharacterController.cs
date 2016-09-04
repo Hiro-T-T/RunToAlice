@@ -19,7 +19,7 @@ public class CharacterController : MonoBehaviour
 
     void Start()
     {
-        hp = 100;
+        hp = 30;
     }
 
     void Update()
@@ -27,10 +27,10 @@ public class CharacterController : MonoBehaviour
         tex.GetComponent<Text>().text = "HP:" + ((int)hp).ToString();
     }
 
-    void OnMouseDown()
-    {
-        Instantiate(bullet, new Vector3(this.transform.position.x, 0.5f, 1f), new Quaternion(1.0f, 0, 0, 1.0f));
-    }
+    //void OnMouseDown()
+    //{
+    //    Instantiate(bullet, new Vector3(this.transform.position.x, 0.5f, 1f), new Quaternion(1.0f, 0, 0, 1.0f));
+    //}
 
     void OnMouseDrag()
     {
@@ -47,29 +47,29 @@ public class CharacterController : MonoBehaviour
         {
             mousePointInWorld.y = this.transform.position.y;
             mousePointInWorld.z = this.transform.position.z;
-            mousePointInWorld.x = Mathf.Clamp(mousePointInWorld.x, -3, 3);
+            mousePointInWorld.x = Mathf.Clamp(mousePointInWorld.x, -2.5f, 2.5f);
         }
         else
         {
             mousePointInWorld.y = this.transform.position.y;
             mousePointInWorld.z = this.transform.position.z;
-            mousePointInWorld.x = -1 * Mathf.Clamp(mousePointInWorld.x, -3, 3);
+            mousePointInWorld.x = -1 * Mathf.Clamp(mousePointInWorld.x, -2.5f, 2.5f);
         }
         this.transform.position = mousePointInWorld;
     }
 
     void OnCollisionEnter(Collision col)
     {
-        if (col.gameObject.CompareTag("enemy"))
-        {
-            hp -= col.gameObject.GetComponent<Obstacle>().CardNum;
+        //if (col.gameObject.CompareTag("Enemy"))
+        //{
+        //    hp -= col.gameObject.GetComponent<Obstacle>().CardNum;
 
-            if (hp <= 0)
-            {
-                gamemanager.Invoke("GameOver", 2.0f);
-                //Destroy(this.gameObject);
-            }
+        //    if (hp <= 0)
+        //    {
+        //        gamemanager.Invoke("GameOver", 2.0f);
+        //        //Destroy(this.gameObject);
+        //    }
 
-        }
+        //}
     }
 }

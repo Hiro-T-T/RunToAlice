@@ -90,10 +90,10 @@ public class NetworkManager : MonoBehaviour
         {
             if (isReceived)
             {
-                GameObject obs = Resources.Load<GameObject>("Obstacle");
+                GameObject prefab = Resources.Load<GameObject>("Obstacle");
+                GameObject obs = Instantiate(prefab, new Vector3(Random.Range(gm.minPos, gm.maxPos), 1.6f, 42), prefab.transform.rotation) as GameObject;
                 obs.GetComponent<Obstacle>().CardNum = Random.Range(1, 14);
                 obs.GetComponent<Obstacle>().State = gm.obsState;
-                Instantiate(obs, new Vector3(objectX, 1.6f, 42), obs.transform.rotation);
             }
             isReceived = false;
             yield return new WaitForSeconds(0.1f);

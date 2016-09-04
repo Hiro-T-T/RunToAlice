@@ -2166,14 +2166,14 @@ Rigidbody:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1105501099}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 10
   m_Drag: 0
   m_AngularDrag: 0
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 124
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
 --- !u!1 &1130409977
 GameObject:
   m_ObjectHideFlags: 0
@@ -2552,6 +2552,7 @@ GameObject:
   - 33: {fileID: 1485061866}
   - 65: {fileID: 1485061865}
   - 23: {fileID: 1485061864}
+  - 54: {fileID: 1485061868}
   m_Layer: 0
   m_Name: endWall
   m_TagString: end
@@ -2620,6 +2621,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
+--- !u!54 &1485061868
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1485061863}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1491500790
 GameObject:
   m_ObjectHideFlags: 0

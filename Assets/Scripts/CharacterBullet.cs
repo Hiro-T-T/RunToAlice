@@ -30,7 +30,7 @@ public class CharacterBullet : MonoBehaviour
 
     void OnCollisionEnter(Collision col)
     {
-        if (col.gameObject.CompareTag("enemy"))
+        if (col.gameObject.CompareTag("Enemy"))
         {
             Destroy(this.gameObject);
         }

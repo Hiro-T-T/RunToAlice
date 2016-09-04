@@ -26,7 +26,7 @@ public class MoveController : MonoBehaviour
 
     void OnCollisionEnter(Collision col)
     {
-        if (col.gameObject.CompareTag("enemy"))
+        if (col.gameObject.CompareTag("Enemy"))
         {
             gamemanager.Invoke("GameOver", loadTime);
             Destroy(this.gameObject);

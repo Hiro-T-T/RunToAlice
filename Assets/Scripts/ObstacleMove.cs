@@ -30,14 +30,30 @@ public class ObstacleMove : MonoBehaviour
 
     void OnCollisionEnter(Collision col)
     {
-        if (col.gameObject.CompareTag("end"))
+        if (col.gameObject.CompareTag("End"))
         {
+            print("a");
             Destroy(this.gameObject);
         }
         if (col.gameObject.CompareTag("Bullet"))
         {
+            print("b");
             Destroy(this.gameObject);
         }
+        if (col.gameObject.CompareTag("Player"))
+        {
+            print("c" + this.GetComponent<Obstacle>().CardNum);
+            CharacterController.hp -= this.GetComponent<Obstacle>().CardNum;
+            if (CharacterController.hp < 0) CharacterController.hp = 0;
 
+            if (CharacterController.hp <= 0)
+            {
+                GameObject.Find("GameManager").GetComponent<GameManager>().Invoke("GameOver", 2.0f);
+                //Destroy(this.gameObject);
+            }
+
+
+            Destroy(this.gameObject);
+        }
     }
 }

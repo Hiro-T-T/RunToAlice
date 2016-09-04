@@ -34,14 +34,18 @@ public class Reverse : MonoBehaviour
                 cc.isReverse = true;
                 Invoke("FinishEffect", effectTime);
             }
+            if (col.gameObject.CompareTag("End"))
+            {
+                Destroy(this.gameObject);
+            }
         }
     }
 
-    void OnCollisionEnter(Collision col)
-    {
-        if (col.gameObject.CompareTag("end"))
-        {
-            Destroy(this.gameObject);
-        }
-    }
+    //void OnCollisionEnter(Collision col)
+    //{
+    //    if (col.gameObject.CompareTag("End"))
+    //    {
+    //        Destroy(this.gameObject);
+    //    }
+    //}
 }
