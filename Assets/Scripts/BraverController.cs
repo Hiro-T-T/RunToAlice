@@ -2,14 +2,12 @@
 using System.Collections;
 
 public class BraverController : MonoBehaviour {
-    ObsType obs;
     public GameObject braveBullet;
     public int bulletCount = 7;
     public float timeLeft = 3.0f;
 
 	// Use this for initialization
 	void Start () {
-        obs = ObsType.Braver;
 	}
 
     // Update is called once per frame

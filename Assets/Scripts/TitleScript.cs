@@ -9,6 +9,7 @@ public class TitleScript : Client
     public Toggle toggle;
     public int ClientNum = 0;
     private bool isFirstCall = true;
+<<<<<<< HEAD
     [SerializeField]
     Graphic m_Graphics;
     [SerializeField]
@@ -23,6 +24,9 @@ public class TitleScript : Client
     public GameObject texF;
 
 
+=======
+    
+>>>>>>> 36d4dc1baa13f5d5ba9fc80bad3b89863d37a165
     public static TitleScript Instance
     {
         get; private set;

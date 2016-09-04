@@ -9,18 +9,19 @@ public class GameManager : MonoBehaviour {
     public float ballSpeed = 0.3f;
     public float minPos = -4.0f;
     public float maxPos = 4.0f;
-    public float timeLeft = 3.0f;
-    public static float textureSpeed = 2.0f;
+    public float timeLeft = 4.0f;
+    public static float textureSpeed = 2.4f;
     public float minRange = -4.0f;
     public float maxRange = 4.0f;
     public static int killCount;
     public float countTime = 30;
     public static bool coolTime = false;
-    public static float intarval = 5.0f;
+    public static float intarval = 2.0f;
     public int hp_middle = 70;
     public int hp_low = 30;
     public int hp_death = 10;
     public GameObject tex;
+    public ObstacleState obsState = ObstacleState.Back;
 
     //private static GameManager gm;
      

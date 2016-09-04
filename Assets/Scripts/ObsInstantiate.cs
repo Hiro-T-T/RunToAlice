@@ -7,18 +7,21 @@ public class ObsInstantiate : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
+        gm = this.GetComponent<GameManager>();
     }
 
     // Update is called once per frame
-    //void Update()
-    //{
-    //    gm.timeLeft -= Time.deltaTime;
-    //    if (gm.timeLeft <= 0.0)
-    //    {
-    //        gm.timeLeft = 3.0f;
-    //        //ここに処理
-    //        Instantiate(Resources.Load<GameObject>("Obstacle"), new Vector3(Random.Range(gm.minPos, gm.maxPos), 0.5f, 42), Quaternion.identity);
-    //    }
-    //}
+    void Update()
+    {
+        gm.timeLeft -= Time.deltaTime;
+        if (gm.timeLeft <= 0.0)
+        {
+            gm.timeLeft = 4.0f;
+            //ここに処理
+            GameObject obs = Resources.Load<GameObject>("Obstacle");
+            obs.GetComponent<Obstacle>().CardNum = Random.Range(1, 14);
+            obs.GetComponent<Obstacle>().State = gm.obsState;
+            Instantiate(obs, new Vector3(Random.Range(gm.minPos, gm.maxPos), 1.6f, 42), obs.transform.rotation);
+        }
+    }
 }
