@@ -2145,6 +2145,7 @@ MonoBehaviour:
     type: 2}
   bullet: {fileID: 1000010855551184, guid: 8312afddc6f5eb04b8fbda8fc4f3d4d9, type: 2}
   tex: {fileID: 171207063}
+  isReverse: 0
 --- !u!136 &1105501102
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2172,7 +2173,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 124
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!1 &1130409977
 GameObject:
   m_ObjectHideFlags: 0
@@ -3390,10 +3391,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c09ba6e233c02c4791e07d560e7abce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interval: 4
   gm: {fileID: 1897010480}
   Batsu: {fileID: 1000013339239832, guid: 0cf99151a4886be46a9afbbd5e0e63cc, type: 2}
   MushiMegane: {fileID: 1000010328856220, guid: eeb4ffdf27c9511469156825b4b825a0,
     type: 2}
+  Reverse: {fileID: 1000010413818032, guid: b4b2191815434094bacba113a8c4acee, type: 2}
 --- !u!1 &1909389759
 GameObject:
   m_ObjectHideFlags: 0
@@ -3500,6 +3503,7 @@ MonoBehaviour:
     type: 2}
   bullet: {fileID: 1000010855551184, guid: 8312afddc6f5eb04b8fbda8fc4f3d4d9, type: 2}
   tex: {fileID: 171207063}
+  isReverse: 0
 --- !u!136 &1919363460
 CapsuleCollider:
   m_ObjectHideFlags: 0

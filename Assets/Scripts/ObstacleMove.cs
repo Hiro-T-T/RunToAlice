@@ -16,15 +16,16 @@ public class ObstacleMove : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
-    void FixedUpdate()
-    {
-        //rb.AddForce(transform.forward * -moveSpeed);
-    }
+    //void FixedUpdate()
+    //{
+    //    rb.AddForce(transform.forward * -moveSpeed);
+    //}
 
-    // Update is called once per frame
+    //Update is called once per frame
     void Update()
     {
-        this.transform.position += new Vector3(0, 0, -moveSpeed);
+
+        this.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - moveSpeed);
     }
 
     void OnCollisionEnter(Collision col)
@@ -37,5 +38,6 @@ public class ObstacleMove : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+
     }
 }

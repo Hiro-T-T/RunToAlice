@@ -2,26 +2,39 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class ResultManager : MonoBehaviour {
+public class ResultManager : MonoBehaviour
+{
 
-    public GameObject tex;
+    public GameObject MyHP;
+    public GameObject RivalHP;
+    public GameObject WinLose;
+    private int MyHp;
+    private int RivalHp;
 
-	// Use this for initialization
-	void Start () {
-        
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        if (ModeManager.gameMode == 1)
+    // Use this for initialization
+    void Start()
+    {
+        MyHp = CharacterController.hp;
+        RivalHp = CharacterController.hp;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+        MyHP.GetComponent<Text>().text = "自分のHP：" + MyHp;
+        RivalHP.GetComponent<Text>().text = "相手のHP：" + RivalHp;
+        if (MyHp > RivalHp )
         {
-            tex.GetComponent<Text>().text = "You are BluckJuck";
+            WinLose.GetComponent<Text>().text = "You Win";
         }
-
-        if (ModeManager.gameMode == 2)
+        else if (MyHp < RivalHp)
         {
-            tex.GetComponent<Text>().text = ((int)CharacterController.hp).ToString();
+            WinLose.GetComponent<Text>().text = "You Lose";
         }
-
+        else
+        {
+            WinLose.GetComponent<Text>().text = "Draw";
+        }
     }
 }

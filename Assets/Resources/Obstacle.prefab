@@ -27,7 +27,7 @@ GameObject:
   - 114: {fileID: 114000012354641302}
   m_Layer: 0
   m_Name: Obstacle
-  m_TagString: Untagged
+  m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -95,7 +95,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 118
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!65 &65000010986676354
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -106,7 +106,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1.2, y: 1.2, z: 4}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114000012179518614
 MonoBehaviour:
