@@ -16,6 +16,7 @@ public class NetworkManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        obstacle = (GameObject)Resources.Load("Obstacle");
         ts = TitleScript.Instance;
         br = GameObject.Find("braver");
 

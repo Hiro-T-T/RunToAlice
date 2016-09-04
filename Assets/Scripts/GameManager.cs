@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour {
     void Start () {
         obstacle = (GameObject)Resources.Load("Obstacle");
  
-        obstacle.GetComponent<ObstacleMove>().isBreakable = true;
+        //obstacle.GetComponent<ObstacleMove>().isBreakable = true;
 
         tex.GetComponent<Text>().text = ((int)countTime).ToString();
     }
