@@ -119,11 +119,11 @@ public class Client : MonoBehaviour
         if (stream == null) return;
         int bytes = stream.EndRead(ar);
         string message = enc.GetString(readbuf, 0, bytes);
-        print("read1 : " + message);
+        //print("read1 : " + message);
         message = message.Replace("\r", "").Replace("\n", "");
         isStopReading = false;
 
-        print("read2 : " + message);
+        //print("read2 : " + message);
         if (message == "pressatb")
             OnAtButtonReceived();
         else

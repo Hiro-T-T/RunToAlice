@@ -69,6 +69,7 @@ public class TitleScript : Client
             {
                 MessageReceived -= ClientNumReceived;
                 SceneManager.LoadScene("mode");
+                break;
             }
             else
             {
