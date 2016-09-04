@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System;
 using System.IO;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,6 +9,9 @@ public class NetworkManager : MonoBehaviour
     public GameObject br;
     public GameObject instantiateImage;
     public GameManager gm;
+    private GameObject obstacle;
+    public float minPos = -4.0f;
+    public float maxPos = 4.0f;
 
     // Use this for initialization
     void Start()
@@ -74,6 +76,7 @@ public class NetworkManager : MonoBehaviour
     private void AtButtonReceived()
     {
         print("Button Pressed");
-        gm.Insta();
+        Instantiate(obstacle, new Vector3(Random.Range(minPos, maxPos), 0, 42), Quaternion.identity);
     }
+
 }
