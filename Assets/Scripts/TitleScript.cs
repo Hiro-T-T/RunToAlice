@@ -75,13 +75,14 @@ public class TitleScript : Client
     {
         while (true)
         {
+            // クライアント数をサーバにリクエスト
             RequestClientNum();
             yield return new WaitForSeconds(0.1f);
             StartCoroutine(StartReading());
 
             if (ClientNum >= 1)
             {
-                MessageReceived -= ClientNumReceived;
+                //MessageReceived -= ClientNumReceived;
                 isEntry = true;
                 SceneManager.LoadScene("loading");
                 break;

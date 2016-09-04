@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class LoadingManager : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class LoadingManager : MonoBehaviour
     void Start()
     {
         ts = TitleScript.Instance;
+
+        ConnectingText.SetActive(true);
+        CompleteText.SetActive(false);
 
         StartCoroutine(WaitForConnecting());
     }
@@ -25,22 +29,26 @@ public class LoadingManager : MonoBehaviour
     {
         while (true)
         {
-            RequestClientNum();
+            // クライアント数をサーバにリクエスト
+            ts.RequestClientNum();
             yield return new WaitForSeconds(0.1f);
-            StartCoroutine(StartReading());
+            StartCoroutine(ts.StartReading());
 
-            if (ClientNum >= 1)
+            if (ts.ClientNum >= 2)
             {
-                MessageReceived -= ClientNumReceived;
-                isEntry = true;
-                SceneManager.LoadScene("loading");
+                ConnectingText.SetActive(false);
+                CompleteText.SetActive(true);
+
+                Invoke("ready", 1.0f);
                 break;
             }
-            else
-            {
-                Debug.Log("サーバに接続できませんでした ClientNum : " + ClientNum);
-            }
+
             yield return new WaitForSeconds(0.1f);
         }
+    }
+
+    private void LoadReadyScene()
+    {
+        SceneManager.LoadScene("ready");
     }
 }

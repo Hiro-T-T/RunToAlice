@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ResultManager : MonoBehaviour
 {
@@ -8,15 +9,21 @@ public class ResultManager : MonoBehaviour
     public GameObject MyHP;
     public GameObject RivalHP;
     public GameObject WinLose;
+    private string MyName;
+    private string RivalName;
     private int MyHp;
     private int RivalHp;
 
     // Use this for initialization
     void Start()
     {
+        MyName = TitleScript.PlayerName;
         MyHp = CharacterController.hp;
         if (NetworkManager.RivalInfo != null)
+        {
+            RivalName = NetworkManager.RivalInfo.Name;
             RivalHp = NetworkManager.RivalInfo.HP;
+        }
         else RivalHp = 100;
     }
 
@@ -38,5 +45,10 @@ public class ResultManager : MonoBehaviour
         {
             WinLose.GetComponent<Text>().text = "Draw";
         }
+    }
+
+    void OnMouseDown()
+    {
+        SceneManager.LoadScene("retryexit");
     }
 }
