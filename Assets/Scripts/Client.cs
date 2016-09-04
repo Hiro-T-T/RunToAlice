@@ -19,7 +19,7 @@ public class Client : MonoBehaviour
     bool isStopReading = false;
     byte[] readbuf;
     public Action<string> MessageReceived = null;
-    public Action AtButtonReceived = null;
+    public Action<string> AtButtonReceived = null;
 
     private ManualResetEvent _connect = new ManualResetEvent(false);
     TcpClient tcp;
@@ -120,8 +120,8 @@ public class Client : MonoBehaviour
         isStopReading = false;
 
         //print("read2 : " + message);
-        if (message == "pressatb")
-            OnAtButtonReceived();
+        if (message.Contains("pressatb"))
+            OnAtButtonReceived(message.Substring(9, message.Length));
         else
             OnMessageReceived(message);
     }
@@ -203,12 +203,12 @@ public class Client : MonoBehaviour
         }
     }
 
-    private void OnAtButtonReceived()
+    private void OnAtButtonReceived(string str)
     {
-        Action tmp = AtButtonReceived;
+        Action<string> tmp = AtButtonReceived;
         if (tmp != null)
         {
-            tmp();
+            tmp(str);
         }
     }
 

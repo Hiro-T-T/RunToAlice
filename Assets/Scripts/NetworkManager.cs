@@ -55,7 +55,7 @@ public class NetworkManager : MonoBehaviour
         //{
             if (ts != null)
             {
-                StartCoroutine(ts.SendMessage("pressatb"));
+                StartCoroutine(ts.SendMessage("pressatb "+ Random.Range(minPos, maxPos)));
             }
             GameManager.coolTime = true;
             instantiateImage.SetActive(false);
@@ -74,10 +74,10 @@ public class NetworkManager : MonoBehaviour
         print(message);
     }
 
-    private void AtButtonReceived()
+    private void AtButtonReceived(string str)
     {
         print("Button Pressed");
-        Instantiate(obstacle, new Vector3(Random.Range(minPos, maxPos), 0, 42), Quaternion.identity);
+        Instantiate(obstacle, new Vector3(float.Parse(str), 0, 42), Quaternion.identity);
     }
 
 }
