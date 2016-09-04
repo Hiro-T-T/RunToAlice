@@ -25,8 +25,12 @@ public class Client : MonoBehaviour
 
     public Client()
     {
-
     }
+
+    //~Client()
+    //{
+    //    Close();
+    //}
 
     public void Start()
     {
@@ -114,12 +118,18 @@ public class Client : MonoBehaviour
         {
             stream = GetNetworkStream();
         }
-        string playerName = "[A]: ";
         //サーバーにデータを送信する
         Encoding enc = Encoding.UTF8;
-        byte[] sendBytes = enc.GetBytes(playerName + message + "\n");
+        byte[] sendBytes = enc.GetBytes(message + "\n");
         //データを送信する
         stream.Write(sendBytes, 0, sendBytes.Length);
+
+        //if (message == "close")
+        //{
+        //    stream.Close();
+        //    if (tcp != null)
+        //        tcp.Close();
+        //}
         yield break;
     }
 
@@ -156,8 +166,8 @@ public class Client : MonoBehaviour
             return stream;
         }
 
-        //string ipOrHost = "localhost";
-        string ipOrHost = "172.20.10.5";
+        string ipOrHost = "localhost";
+        //string ipOrHost = "172.20.10.5";
 
         int port = 5022;
 
@@ -193,6 +203,20 @@ public class Client : MonoBehaviour
     private void ConnectCallback(IAsyncResult result)
     {
         _connect.Set();
+    }
+
+    public void Close()
+    {     
+        if (stream != null)
+        {
+            print("Client Close");
+            StartCoroutine(SendMessage("close"));
+        }
+    }
+
+    private void OnApplicationQuit()
+    {
+        Close();
     }
 
     private void OnMessageReceived(List<string> message)

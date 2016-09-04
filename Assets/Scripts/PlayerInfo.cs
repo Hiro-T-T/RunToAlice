@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerInfo : MonoBehaviour {
+public class PlayerInfo {
 
     public int HP;
     public float X;
