@@ -22,7 +22,7 @@ public class NetworkManager : MonoBehaviour
             ts.AtButtonReceived += AtButtonReceived;
             ts.MessageReceived += MessageReceived;
             StartCoroutine(ts.StartReadLoop());
-            StartSendInfo();
+            // StartSendInfo();
             print("StartSendInfo");
         }
     }
@@ -47,9 +47,8 @@ public class NetworkManager : MonoBehaviour
 
     public void PressAttackButton()
     {
-
-        if (GameManager.coolTime == false)
-        {
+        //if (GameManager.coolTime == false)
+        //{
             if (ts != null)
             {
                 StartCoroutine(ts.SendMessage("pressatb"));
@@ -57,7 +56,7 @@ public class NetworkManager : MonoBehaviour
             GameManager.coolTime = true;
             instantiateImage.SetActive(false);
             Invoke("CoolManage", GameManager.intarval);
-        }
+        //}
     }
 
     public void CoolManage()
