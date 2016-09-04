@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour {
             timeLeft = 5.0f;
 
             //ここに処理
-            Insta();
+            //Insta();
 
         }
 

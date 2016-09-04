@@ -56,12 +56,12 @@ public class Client : MonoBehaviour
         }
     }
 
-    public IEnumerator StartReading() 
+    public IEnumerator StartReading()
     {
         readbuf = new byte[1024];
         while (true)
         {
-            if (!isStopReading) { ReadMessage(); }
+            if (!isStopReading && stream != null && stream.DataAvailable) { ReadMessage(); }
             yield return null;
         }
     }
@@ -75,7 +75,7 @@ public class Client : MonoBehaviour
 
     public IEnumerator SendMessage(string message)
     {
-        Debug.Log("START SendMessage:" + message);
+        //Debug.Log("START SendMessage:" + message);
 
         if (stream == null)
         {
@@ -98,15 +98,13 @@ public class Client : MonoBehaviour
 
     private void ReadMessage()
     {
-        
-        if (stream != null)
-        {
-            //stream = GetNetworkStream();
-            //Debug.Log("gotStream");
-            // 非同期で待ち受けする
-            stream.BeginRead(readbuf, 0, readbuf.Length, new AsyncCallback(ReadCallback), null);
-            isStopReading = true;
-        }
+
+        //stream = GetNetworkStream();
+        //Debug.Log("gotStream");
+        // 非同期で待ち受けする
+        stream.BeginRead(readbuf, 0, readbuf.Length, new AsyncCallback(ReadCallback), null);
+        isStopReading = true;
+
     }
 
     public void ReadCallback(IAsyncResult ar)
@@ -147,6 +145,7 @@ public class Client : MonoBehaviour
             _connect.Reset();
 
             tcp = new TcpClient();
+            tcp.NoDelay = true;
             tcp.BeginConnect(ipOrHost, port, new AsyncCallback(ConnectCallback), tcp);
 
             if (!_connect.WaitOne(1000))

@@ -27,7 +27,7 @@ public class NetworkManager : MonoBehaviour
             ts.MessageReceived += MessageReceived;
             StartCoroutine(ts.StartReadLoop());
             // StartSendInfo();
-            print("StartSendInfo");
+            //print("StartSendInfo");
         }
     }
 
@@ -76,7 +76,7 @@ public class NetworkManager : MonoBehaviour
 
     private void AtButtonReceived(string str)
     {
-        print("Button Pressed");
+        print("Button Pressed : " + float.Parse(str));
         Instantiate(obstacle, new Vector3(float.Parse(str), 0, 42), Quaternion.identity);
     }
 
