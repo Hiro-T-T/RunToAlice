@@ -7,6 +7,7 @@ public class TitleScript : Client
 {
     private bool connectserver = false;
     public Toggle toggle;
+    public int ClientNum = 0;
 
     public static TitleScript Instance
     {
@@ -35,7 +36,19 @@ public class TitleScript : Client
             if (ConnectionStart())
             {
                 StartCoroutine(StartReading());
-                SceneManager.LoadScene("mode");
+
+                MessageReceived = ClientNumReceived;
+                RequestClientNum();
+                
+                if (ClientNum == 2)
+                {
+                    MessageReceived -= ClientNumReceived;
+                    SceneManager.LoadScene("mode");
+                }
+                else
+                {
+                    Debug.Log("サーバに接続できませんでした ClientNum : " + ClientNum);
+                }
             }
             else
             {
@@ -51,5 +64,11 @@ public class TitleScript : Client
             connectserver = toggle.isOn;
             Debug.Log(connectserver);
         }
+    }
+
+    private void ClientNumReceived(string num)
+    {
+
+        ClientNum = int.Parse(num);
     }
 }

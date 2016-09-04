@@ -11,14 +11,15 @@ using System.Text;
 public class Client : MonoBehaviour
 {
     // メッセージを管理するリスト
-    private List<string> messages = new List<string>();
+    //private List<string> messages = new List<string>();
     // Chat用のテキスト
     private string currentMessage = string.Empty;
     // Server
     NetworkStream stream = null;
     bool isStopReading = false;
     byte[] readbuf;
-    public Action<List<string>> MessageReceived = null;
+    public Action<string> MessageReceived = null;
+    public Action AtButtonReceived = null;
 
     private ManualResetEvent _connect = new ManualResetEvent(false);
     TcpClient tcp;
@@ -60,48 +61,6 @@ public class Client : MonoBehaviour
             yield return null;
         }
     }
-
-    //private void OnGUI()
-    //{
-    //    GUILayout.Space(10);
-    //    GUILayout.BeginHorizontal(GUILayout.Width(250));
-
-    //    // 入力情報取得
-    //    currentMessage = GUILayout.TextField(currentMessage);
-
-    //    // Sendボタン
-    //    if (GUILayout.Button("Send"))
-    //    {
-    //        // 入力が空ではない場合処理
-    //        if (!string.IsNullOrEmpty(currentMessage.Trim()) && currentMessage != "")
-    //        {
-    //            Debug.Log(currentMessage);
-
-    //            // Chatサーバに送信
-    //            StartCoroutine(SendMessage(currentMessage));
-
-    //            // 送信後は、入力値を空
-    //            currentMessage = string.Empty;
-    //        }
-    //    }
-
-    //    GUILayout.EndHorizontal();
-
-    //    // Chat欄の生成
-    //    createMessage(messages);
-    //}
-
-    //private void createMessage(List<string> messages)
-    //{
-    //    // 入力されたメッセージを逆順に100表示
-    //    int count = 1;
-    //    for (int i = messages.Count - 1; i >= 0; i--)
-    //    {
-    //        GUILayout.Label(messages[i]);
-    //        count++;
-    //        if (count > 100) break;
-    //    }
-    //}
 
     public void SendPlayerInfo(PlayerInfo pi)
     {
@@ -154,9 +113,10 @@ public class Client : MonoBehaviour
         string message = enc.GetString(readbuf, 0, bytes);
         message = message.Replace("\r", "").Replace("\n", "");
         isStopReading = false;
-        messages.Add(message);
 
-        OnMessageReceived(messages);
+        if (message == "pressatb")
+            OnAtButtonReceived();
+        OnMessageReceived(message);
     }
 
     private NetworkStream GetNetworkStream()
@@ -206,11 +166,19 @@ public class Client : MonoBehaviour
     }
 
     public void Close()
-    {     
+    {
         if (stream != null)
         {
             print("Client Close");
             StartCoroutine(SendMessage("close"));
+        }
+    }
+
+    public void RequestClientNum()
+    {
+        if (stream != null)
+        {
+            StartCoroutine(SendMessage("clientnum"));
         }
     }
 
@@ -219,12 +187,21 @@ public class Client : MonoBehaviour
         Close();
     }
 
-    private void OnMessageReceived(List<string> message)
+    private void OnMessageReceived(string message)
     {
-        Action<List<string>> tmp = MessageReceived;
+        Action<string> tmp = MessageReceived;
         if (tmp != null)
         {
             tmp(message);
+        }
+    }
+
+    private void OnAtButtonReceived()
+    {
+        Action tmp = AtButtonReceived;
+        if (tmp != null)
+        {
+            tmp();
         }
     }
 

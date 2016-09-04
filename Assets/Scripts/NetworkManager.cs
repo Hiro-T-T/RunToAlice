@@ -8,6 +8,7 @@ public class NetworkManager : MonoBehaviour
 {
     private TitleScript ts;
     public GameObject br;
+    public GameObject instantiateImage;
 
     // Use this for initialization
     void Start()
@@ -18,6 +19,7 @@ public class NetworkManager : MonoBehaviour
         print("StartNetworkManager");
         if (ts != null)
         {
+            ts.AtButtonReceived += AtButtonReceived;
             ts.MessageReceived += MessageReceived;
             StartSendInfo();
             print("StartSendInfo");
@@ -42,11 +44,34 @@ public class NetworkManager : MonoBehaviour
         }
     }
 
-    private void MessageReceived(List<string> messages)
+    public void PressAttackButton()
     {
-        foreach(var s in messages)
+
+        if (GameManager.coolTime == false)
         {
-            print(s);
+            if (ts != null)
+            {
+                StartCoroutine(ts.SendMessage("pressatb"));
+            }
+            GameManager.coolTime = true;
+            instantiateImage.SetActive(false);
+            Invoke("CoolManage", GameManager.intarval);
         }
+    }
+
+    public void CoolManage()
+    {
+        GameManager.coolTime = true;
+        instantiateImage.SetActive(true);
+    }
+
+    private void MessageReceived(string message)
+    {
+        print(message);
+    }
+
+    private void AtButtonReceived()
+    {
+        print("Button Pressed");
     }
 }

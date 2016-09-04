@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour {
     public float maxRange = 4.0f;
     public static int killCount;
     public float countTime = 30;
+    public static bool coolTime = false;
+    public static float intarval = 5.0f;
     public GameObject tex;
 
     //private static GameManager gm;
