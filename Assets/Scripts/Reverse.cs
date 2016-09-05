@@ -6,7 +6,10 @@ public class Reverse : MonoBehaviour
     private const float effectTime = 5.0f;
     public float moveSpeed = 0.1f;
 
-    private CharacterController cc; 
+    private CharacterController cc;
+
+    public AudioClip audioClip;
+    private AudioSource audioSource;
 
     // Use this for initialization
     void Start()
@@ -31,6 +34,10 @@ public class Reverse : MonoBehaviour
         {
             if (col.gameObject.CompareTag("Player"))
             {
+                audioSource = gameObject.GetComponent<AudioSource>();
+                //audioSource.clip = audioClip1;
+                audioSource.PlayOneShot(audioClip);
+
                 cc.isReverse = true;
                 Invoke("FinishEffect", effectTime);
             }
