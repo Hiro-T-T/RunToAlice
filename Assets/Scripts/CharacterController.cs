@@ -75,4 +75,9 @@ public class CharacterController : MonoBehaviour
 
         //}
     }
+
+    public  void Damage()
+    {
+        Instantiate(Resources.Load("Damage"), new Vector3(this.transform.position.x, 1.5f, 0.17f), Quaternion.identity);
+    }
 }

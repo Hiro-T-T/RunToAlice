@@ -6,6 +6,7 @@ public class ObstacleMove : MonoBehaviour
 
     // 消せるかどうか　とりあえずGameManagerでtrueに変更してる
     public bool isBreakable = false;
+    public CharacterController chara;
 
     public float moveSpeed = 0.1f;
     private Rigidbody rb;
@@ -13,6 +14,7 @@ public class ObstacleMove : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        //Resources.Load("Damage");
         rb = GetComponent<Rigidbody>();
     }
 
@@ -28,7 +30,7 @@ public class ObstacleMove : MonoBehaviour
         this.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - moveSpeed);
     }
 
-    void OnCollisionEnter(Collision col)
+    void OnTriggerEnter(Collider col)
     {
         if (col.gameObject.CompareTag("End"))
         {
@@ -42,6 +44,7 @@ public class ObstacleMove : MonoBehaviour
         }
         if (col.gameObject.CompareTag("Player"))
         {
+            chara.Damage();
             print("c" + this.GetComponent<Obstacle>().CardNum);
             CharacterController.hp -= this.GetComponent<Obstacle>().CardNum;
             if (CharacterController.hp < 0) CharacterController.hp = 0;

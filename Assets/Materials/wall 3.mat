@@ -8,8 +8,8 @@ Material:
   m_PrefabInternal: {fileID: 0}
   m_Name: wall 3
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 5
+  m_ShaderKeywords: _EMISSION
+  m_LightmapFlags: 1
   m_CustomRenderQueue: -1
   stringTagMap: {}
   m_SavedProperties:
@@ -48,9 +48,9 @@ Material:
     - first:
         name: _MainTex
       second:
-        m_Texture: {fileID: 2800000, guid: e91ea376af0d68b4b9f35a56446baac4, type: 3}
+        m_Texture: {fileID: 2800000, guid: 16ac7ec327cfddc4893b4866d6a37d52, type: 3}
         m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: -59.346214}
+        m_Offset: {x: 57.790634, y: 0}
     - first:
         name: _MetallicGlossMap
       second:
