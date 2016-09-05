@@ -40,37 +40,40 @@ public class GameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		timeLeft -= Time.deltaTime;
-		if (timeLeft <= 0.0)
-		{
-			timeLeft = 5.0f;
+        if (ReadyScript.gameStart == true)
+        {
+            timeLeft -= Time.deltaTime;
+            if (timeLeft <= 0.0)
+            {
+                timeLeft = 5.0f;
 
-			//ここに処理
-			//Insta();
+                //ここに処理
+                //Insta();
 
-		}
+            }
 
-		countTime -= Time.deltaTime;
-		if (countTime < 0)
-		{
-			countTime = 0;
-			GameOver();
-		}
-		tex.GetComponent<Text>().text = "残り時間" + ((int)countTime).ToString();
+            countTime -= Time.deltaTime;
+            if (countTime < 0)
+            {
+                countTime = 0;
+                GameOver();
+            }
+            tex.GetComponent<Text>().text = "残り時間" + ((int)countTime).ToString();
 
-		// countTimeの変動
-		if(CharacterController.hp < hp_middle)
-		{
-			intarval = 4.0f;
-		}
-		if (CharacterController.hp < hp_low)
-		{
-			intarval = 2.7f;
-		}
-		if (CharacterController.hp < hp_death)
-		{
-			intarval = 1.3f;
-		}
+            // countTimeの変動
+            if (CharacterController.hp < hp_middle)
+            {
+                intarval = 4.0f;
+            }
+            if (CharacterController.hp < hp_low)
+            {
+                intarval = 2.7f;
+            }
+            if (CharacterController.hp < hp_death)
+            {
+                intarval = 1.3f;
+            }
+        }
 	}
 
 	public void Insta()

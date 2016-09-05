@@ -21,6 +21,7 @@ GameObject:
   - 4: {fileID: 4000010113120576}
   - 114: {fileID: 114000013542314898}
   - 114: {fileID: 114000012948900858}
+  - 114: {fileID: 114000014010583042}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GameManager
@@ -53,6 +54,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gm: {fileID: 114000013542314898}
+  Interval: 4
 --- !u!114 &114000013542314898
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -68,3 +70,29 @@ MonoBehaviour:
   minPos: -4
   maxPos: 4
   timeLeft: 3
+  minRange: -2
+  maxRange: 2
+  countTime: 30
+  hp_middle: 70
+  hp_low: 30
+  hp_death: 10
+  tex: {fileID: 1000010313244266, guid: 37d775bd1cc2fb942b7e855bfa1b7336, type: 2}
+  obsState: 1
+  instantiateImage: {fileID: 0}
+--- !u!114 &114000014010583042
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013162494650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c09ba6e233c02c4791e07d560e7abce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interval: 4
+  gm: {fileID: 114000013542314898}
+  Batsu: {fileID: 1000013339239832, guid: 0cf99151a4886be46a9afbbd5e0e63cc, type: 2}
+  MushiMegane: {fileID: 1000010328856220, guid: eeb4ffdf27c9511469156825b4b825a0,
+    type: 2}
+  Reverse: {fileID: 1000010413818032, guid: b4b2191815434094bacba113a8c4acee, type: 2}

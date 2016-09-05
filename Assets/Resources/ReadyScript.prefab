@@ -9,51 +9,47 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1000010782482760}
+  m_RootGameObject: {fileID: 1000012748251598}
   m_IsPrefabParent: 1
---- !u!1 &1000010782482760
+--- !u!1 &1000012748251598
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 4000010758734440}
-  - 114: {fileID: 114000012069266594}
+  - 4: {fileID: 4000013842986758}
+  - 114: {fileID: 114000011923663962}
   m_Layer: 0
-  m_Name: NetworkManager
+  m_Name: ReadyScript
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4000010758734440
+--- !u!4 &4000013842986758
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010782482760}
+  m_GameObject: {fileID: 1000012748251598}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 376.86792, y: 793.3487, z: 93.38214}
+  m_LocalPosition: {x: 409, y: 640, z: 0.05}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!114 &114000012069266594
+--- !u!114 &114000011923663962
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010782482760}
+  m_GameObject: {fileID: 1000012748251598}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6e4e6a7d3201594a8dbb0370edf6c3c, type: 3}
+  m_Script: {fileID: 11500000, guid: dc18476a9b2bfe7409a40cf4b1ef69a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ar: {fileID: 1000010460473068, guid: 0f6f28c4e15915446959aee6f2cdf868, type: 2}
-  instantiateImage: {fileID: 0}
-  gm: {fileID: 114000013542314898, guid: c09ac4803a2c08e4b9a9397f18e7754c, type: 2}
-  obstacle: {fileID: 1000010066600116, guid: fd5891a62ad82ae4f986993e90859295, type: 2}
-  minPos: -4
-  maxPos: 4
+  Ready: {fileID: 0}
+  Go: {fileID: 0}

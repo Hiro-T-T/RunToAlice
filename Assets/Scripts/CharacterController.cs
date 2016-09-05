@@ -34,28 +34,31 @@ public class CharacterController : MonoBehaviour
 
     void OnMouseDrag()
     {
-        Vector3 objectPointInScreen
-            = Camera.main.WorldToScreenPoint(this.transform.position);
-
-        Vector3 mousePointInScreen
-            = new Vector3(Input.mousePosition.x - moveSpeed,
-                          Input.mousePosition.y,
-                          objectPointInScreen.z);
-
-        Vector3 mousePointInWorld = Camera.main.ScreenToWorldPoint(mousePointInScreen);
-        if (isReverse == false)
+        if (ReadyScript.gameStart == true)
         {
-            mousePointInWorld.y = this.transform.position.y;
-            mousePointInWorld.z = this.transform.position.z;
-            mousePointInWorld.x = Mathf.Clamp(mousePointInWorld.x, -2.5f, 2.5f);
+            Vector3 objectPointInScreen
+                = Camera.main.WorldToScreenPoint(this.transform.position);
+
+            Vector3 mousePointInScreen
+                = new Vector3(Input.mousePosition.x - moveSpeed,
+                              Input.mousePosition.y,
+                              objectPointInScreen.z);
+
+            Vector3 mousePointInWorld = Camera.main.ScreenToWorldPoint(mousePointInScreen);
+            if (isReverse == false)
+            {
+                mousePointInWorld.y = this.transform.position.y;
+                mousePointInWorld.z = this.transform.position.z;
+                mousePointInWorld.x = Mathf.Clamp(mousePointInWorld.x, -2.5f, 2.5f);
+            }
+            else
+            {
+                mousePointInWorld.y = this.transform.position.y;
+                mousePointInWorld.z = this.transform.position.z;
+                mousePointInWorld.x = -1 * Mathf.Clamp(mousePointInWorld.x, -2.5f, 2.5f);
+            }
+            this.transform.position = mousePointInWorld;
         }
-        else
-        {
-            mousePointInWorld.y = this.transform.position.y;
-            mousePointInWorld.z = this.transform.position.z;
-            mousePointInWorld.x = -1 * Mathf.Clamp(mousePointInWorld.x, -2.5f, 2.5f);
-        }
-        this.transform.position = mousePointInWorld;
     }
 
     void OnCollisionEnter(Collision col)

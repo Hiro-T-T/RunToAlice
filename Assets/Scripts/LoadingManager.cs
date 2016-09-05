@@ -41,7 +41,7 @@ public class LoadingManager : MonoBehaviour
 
                 yield return new WaitForSeconds(1f);
 
-                SceneManager.LoadScene("ready");
+                SceneManager.LoadScene("game1");
                 break;
             }
 
@@ -51,6 +51,6 @@ public class LoadingManager : MonoBehaviour
 
     private void LoadReadyScene()
     {
-        SceneManager.LoadScene("ready");
+        SceneManager.LoadScene("game1");
     }
 }
