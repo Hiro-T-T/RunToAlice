@@ -31,8 +31,8 @@ public class ResultManager : MonoBehaviour
     void Update()
     {
 
-        MyHP.GetComponent<Text>().text = "自分のHP：" + MyHp;
-        RivalHP.GetComponent<Text>().text = "相手のHP：" + RivalHp;
+        MyHP.GetComponent<Text>().text = "" + MyHp;
+        RivalHP.GetComponent<Text>().text = "" + RivalHp;
         if ((MyHp < RivalHp && MyHp != 0) || RivalHp == 0)
         {
             WinLose.GetComponent<Text>().text = "You Win";

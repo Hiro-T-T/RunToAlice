@@ -130,7 +130,7 @@ GameObject:
   - 114: {fileID: 114000012616092110}
   m_Layer: 0
   m_Name: alice
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2504,7 +2504,7 @@ Animator:
   m_GameObject: {fileID: 1000010460473068}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 3438dbb2262c6b94b99aa74fbac84c8f, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7d841a9320d958e48b4f05e9b1c6c0e7, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2530,7 +2530,7 @@ MonoBehaviour:
   gamemanager: {fileID: 114000013542314898, guid: c09ac4803a2c08e4b9a9397f18e7754c,
     type: 2}
   bullet: {fileID: 1000010855551184, guid: 8312afddc6f5eb04b8fbda8fc4f3d4d9, type: 2}
-  tex: {fileID: 1000013236953746, guid: 37d775bd1cc2fb942b7e855bfa1b7336, type: 2}
+  tex: {fileID: 0}
   isReverse: 0
 --- !u!136 &136000011231293062
 CapsuleCollider:
