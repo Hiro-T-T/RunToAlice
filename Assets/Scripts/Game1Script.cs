@@ -15,7 +15,6 @@ public class Game1Script : MonoBehaviour {
         Instantiate(Resources.Load("endWall"));
         Instantiate(Resources.Load("game1_canvas"));
         Instantiate(Resources.Load("GameManager"));
-        Instantiate(Resources.Load("NetworkManager"));
         
 
     }
