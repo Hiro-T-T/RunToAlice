@@ -28,7 +28,7 @@ public class ObstacleMove : MonoBehaviour
         this.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - moveSpeed);
     }
 
-    void OnCollisionEnter(Collision col)
+    void OnTriggerEnter(Collider col)
     {
         if (col.gameObject.CompareTag("End"))
         {
