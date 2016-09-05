@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BackGround : MonoBehaviour
-{
+public class BackGroundWall : MonoBehaviour {
+
     //public float scrollSpeed = 1f;
+
+    public float textureSpeed = 1.0f;
 
     void Start()
     {
@@ -17,7 +19,7 @@ public class BackGround : MonoBehaviour
 
     void ScrollTexture()
     {
-        var x = Mathf.Repeat(Time.time * GameManager.textureSpeed, 100);
+        var x = Mathf.Repeat(Time.time * textureSpeed, 100);
 
         var offset = new Vector2(x, 0);
 
